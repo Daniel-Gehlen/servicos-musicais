@@ -1,0 +1,1810 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Projeto Musical | Daniel Gehlen</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .form-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .form-header h1 {
+        color: var(--accent);
+        margin-bottom: 1rem;
+        font-size: 2.5rem;
+      }
+
+      .form-header p {
+        color: #aaa;
+        font-size: 1.1rem;
+      }
+
+      .form-stepper {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+
+      .form-stepper:before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: var(--border);
+        z-index: 1;
+      }
+
+      .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+        flex: 1;
+      }
+
+      .step-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--border);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+        transition: all 0.3s;
+      }
+
+      .step.active .step-circle {
+        background-color: var(--accent);
+        color: var(--primary);
+      }
+
+      .step.completed .step-circle {
+        background-color: #2ecc71;
+        color: white;
+      }
+
+      .step-label {
+        font-size: 0.9rem;
+        color: #aaa;
+        text-align: center;
+      }
+
+      .step.active .step-label {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .form-content {
+        background-color: var(--card-bg);
+        border-radius: 15px;
+        padding: 3rem;
+        border: 1px solid var(--border);
+        margin-bottom: 2rem;
+      }
+
+      .form-step {
+        display: none;
+      }
+
+      .form-step.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .form-step h2 {
+        color: var(--accent);
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .form-step h2 i {
+        font-size: 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+
+      .form-group.required label:after {
+        content: " *";
+        color: #e74c3c;
+      }
+
+      .form-input,
+      .form-textarea,
+      .form-select,
+      .form-file {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        color: var(--text);
+        font-size: 1rem;
+        transition: all 0.3s;
+      }
+
+      .form-input:focus,
+      .form-textarea:focus,
+      .form-select:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(15, 204, 69, 0.2);
+      }
+
+      .form-textarea {
+        min-height: 120px;
+        resize: vertical;
+        font-family: inherit;
+      }
+
+      .form-file {
+        padding: 1rem;
+        cursor: pointer;
+      }
+
+      .form-file-info {
+        font-size: 0.9rem;
+        color: #aaa;
+        margin-top: 0.5rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .checkbox-group,
+      .radio-group {
+        margin-top: 1rem;
+      }
+
+      .checkbox-item,
+      .radio-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0.8rem;
+        cursor: pointer;
+      }
+
+      .checkbox-item input,
+      .radio-item input {
+        cursor: pointer;
+      }
+
+      .form-help {
+        font-size: 0.9rem;
+        color: #aaa;
+        margin-top: 0.5rem;
+        font-style: italic;
+      }
+
+      .service-specific {
+        background-color: rgba(15, 204, 69, 0.05);
+        border-left: 4px solid var(--accent);
+        padding: 1.5rem;
+        margin: 2rem 0;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .service-specific h3 {
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .btn-form {
+        padding: 0.8rem 2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        font-size: 1rem;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-prev {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .btn-prev:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .btn-next,
+      .btn-submit {
+        background-color: var(--accent);
+        color: var(--primary);
+      }
+
+      .btn-next:hover,
+      .btn-submit:hover {
+        background-color: #0db83d;
+        transform: translateY(-2px);
+      }
+
+      .btn-submit {
+        padding: 0.8rem 3rem;
+      }
+
+      .form-summary {
+        background-color: rgba(15, 204, 69, 0.05);
+        border-radius: 10px;
+        padding: 2rem;
+        margin: 2rem 0;
+        border: 1px solid var(--accent);
+      }
+
+      .summary-item {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .summary-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .summary-label {
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 0.3rem;
+      }
+
+      .summary-value {
+        color: #ccc;
+      }
+
+      .file-preview {
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+        border: 1px dashed var(--border);
+      }
+
+      .file-preview-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0.5rem;
+      }
+
+      .file-preview-item i {
+        color: var(--accent);
+      }
+
+      .progress-summary {
+        display: none;
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: rgba(52, 152, 219, 0.1);
+        border-radius: 8px;
+        border-left: 4px solid #3498db;
+      }
+
+      @media (max-width: 768px) {
+        .form-container {
+          padding: 1rem;
+        }
+
+        .form-content {
+          padding: 1.5rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .form-stepper {
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .step {
+          flex: 0 0 calc(50% - 0.5rem);
+        }
+
+        .form-actions {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .btn-form {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      /* Estilos específicos para tema claro */
+      body.light-mode .form-content {
+        background-color: white;
+      }
+
+      body.light-mode .form-input,
+      body.light-mode .form-textarea,
+      body.light-mode .form-select,
+      body.light-mode .form-file {
+        background-color: white;
+        color: #333;
+        border-color: #e0e0e0;
+      }
+
+      body.light-mode .form-group label {
+        color: #333;
+      }
+
+      body.light-mode .summary-value {
+        color: #666;
+      }
+
+      body.light-mode .service-specific {
+        background-color: rgba(15, 204, 69, 0.08);
+      }
+
+      body.light-mode .btn-prev {
+        background-color: #f8f9fa;
+        color: #333;
+        border-color: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <i class="fas fa-music"></i>
+        <span>Daniel Gehlen</span>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <!-- Atualizado -->
+          <li><a href="index.html#servicos">Serviços</a></li>
+          <li><a href="audio.html">Amostras de Áudio</a></li>
+          <li><a href="library.html">Biblioteca</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Pesquisar partituras..." />
+      </div>
+    </header>
+
+    <!-- Form Container -->
+    <main class="form-container">
+      <div class="form-header">
+        <h1><i class="fas fa-rocket"></i> Iniciar Projeto Musical</h1>
+        <p>
+          Preencha todas as informações necessárias para que eu possa entender
+          exatamente o que você precisa e fornecer o melhor serviço possível.
+        </p>
+      </div>
+
+      <!-- Stepper -->
+      <div class="form-stepper">
+        <div class="step active" id="step1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Tipo de Projeto</div>
+        </div>
+        <div class="step" id="step2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Informações Pessoais</div>
+        </div>
+        <div class="step" id="step3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Detalhes do Projeto</div>
+        </div>
+        <div class="step" id="step4">
+          <div class="step-circle">4</div>
+          <div class="step-label">Revisão e Envio</div>
+        </div>
+      </div>
+
+      <!-- Form Content -->
+      <div class="form-content">
+        <!-- Step 1: Project Type -->
+        <div class="form-step active" id="formStep1">
+          <h2>
+            <i class="fas fa-guitar"></i> Qual tipo de projeto você precisa?
+          </h2>
+
+          <div class="form-group">
+            <label class="required">Selecione o serviço principal:</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  id="serviceTranscription"
+                  name="serviceType"
+                  value="transcription"
+                  data-service="transcription"
+                />
+                <label for="serviceTranscription">
+                  <strong>Transcrição de Áudio para Partitura</strong><br />
+                  <small>Converter gravações em partitura profissional</small>
+                </label>
+              </div>
+
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  id="serviceLessons"
+                  name="serviceType"
+                  value="lessons"
+                  data-service="lessons"
+                />
+                <label for="serviceLessons">
+                  <strong>Aulas Online</strong><br />
+                  <small
+                    >Violão, Guitarra ou Ukulele - Iniciante ao Avançado</small
+                  >
+                </label>
+              </div>
+
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  id="serviceEvents"
+                  name="serviceType"
+                  value="events"
+                  data-service="events"
+                />
+                <label for="serviceEvents">
+                  <strong>Música para Eventos</strong><br />
+                  <small>Apresentação ao vivo com violão erudito</small>
+                </label>
+              </div>
+
+              <div class="radio-item">
+                <input
+                  type="radio"
+                  id="serviceComposition"
+                  name="serviceType"
+                  value="composition"
+                  data-service="composition"
+                />
+                <label for="serviceComposition">
+                  <strong>Criação/Composição</strong><br />
+                  <small
+                    >Compor nova música ou criar arranjo personalizado</small
+                  >
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Specific Questions (shown based on selection) -->
+          <div
+            id="serviceSpecific"
+            class="service-specific"
+            style="display: none"
+          >
+            <h3>Detalhes específicos para este serviço:</h3>
+            <div
+              id="transcriptionFields"
+              class="service-fields"
+              style="display: none"
+            >
+              <div class="form-group">
+                <label>O que você precisa transcrever?</label>
+                <div class="checkbox-group">
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="transMelody"
+                      name="transcriptionType[]"
+                      value="melody"
+                    />
+                    <label for="transMelody"
+                      >Melodia principal (linha vocal/instrumental)</label
+                    >
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="transChords"
+                      name="transcriptionType[]"
+                      value="chords"
+                    />
+                    <label for="transChords">Acordes e harmonia</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="transRhythm"
+                      name="transcriptionType[]"
+                      value="rhythm"
+                    />
+                    <label for="transRhythm">Ritmo e bateria</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="transFull"
+                      name="transcriptionType[]"
+                      value="full"
+                    />
+                    <label for="transFull"
+                      >Arranjo completo (todos os instrumentos)</label
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Formato de entrega desejado:</label>
+                <div class="checkbox-group">
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="formatPDF"
+                      name="deliveryFormat[]"
+                      value="pdf"
+                    />
+                    <label for="formatPDF">PDF para impressão</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="formatMuse"
+                      name="deliveryFormat[]"
+                      value="musescore"
+                    />
+                    <label for="formatMuse"
+                      >Arquivo editável (MuseScore, Guitar Pro)</label
+                    >
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="formatMIDI"
+                      name="deliveryFormat[]"
+                      value="midi"
+                    />
+                    <label for="formatMIDI">Arquivo MIDI</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="lessonsFields"
+              class="service-fields"
+              style="display: none"
+            >
+              <div class="form-group">
+                <label class="required">Instrumento desejado:</label>
+                <div class="checkbox-group">
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="instrumentGuitar"
+                      name="lessonInstrument[]"
+                      value="guitar"
+                    />
+                    <label for="instrumentGuitar">Guitarra Elétrica</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="instrumentAcoustic"
+                      name="lessonInstrument[]"
+                      value="acoustic"
+                    />
+                    <label for="instrumentAcoustic">Violão</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="instrumentUkulele"
+                      name="lessonInstrument[]"
+                      value="ukulele"
+                    />
+                    <label for="instrumentUkulele">Ukulele</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="required">Seu nível atual:</label>
+                  <select class="form-select" name="skillLevel">
+                    <option value="">Selecione...</option>
+                    <option value="absolute_beginner">
+                      Absoluto iniciante (nunca tocou)
+                    </option>
+                    <option value="beginner">
+                      Iniciante (sabe alguns acordes)
+                    </option>
+                    <option value="intermediate">
+                      Intermediário (toca algumas músicas)
+                    </option>
+                    <option value="advanced">
+                      Avançado (toca bem, quer refinar técnica)
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="required">Frequência desejada:</label>
+                  <select class="form-select" name="lessonFrequency">
+                    <option value="">Selecione...</option>
+                    <option value="weekly">1 vez por semana</option>
+                    <option value="biweekly">2 vezes por semana</option>
+                    <option value="flexible">
+                      Flexível (combinar conforme disponibilidade)
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div id="eventsFields" class="service-fields" style="display: none">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="required">Tipo de evento:</label>
+                  <select class="form-select" name="eventType">
+                    <option value="">Selecione...</option>
+                    <option value="wedding">Casamento</option>
+                    <option value="corporate">Evento Corporativo</option>
+                    <option value="party">Festa/Aniversário</option>
+                    <option value="dinner">Jantar/Coquetel</option>
+                    <option value="other">Outro</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="required">Data do evento:</label>
+                  <input
+                    type="date"
+                    class="form-input"
+                    name="eventDate"
+                    min="<?php echo date('Y-m-d'); ?>"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="required">Duração estimada:</label>
+                  <select class="form-select" name="eventDuration">
+                    <option value="">Selecione...</option>
+                    <option value="1h">Até 1 hora</option>
+                    <option value="2h">2 horas</option>
+                    <option value="3h">3 horas</option>
+                    <option value="4h">4 horas ou mais</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Número aproximado de convidados:</label>
+                  <input
+                    type="number"
+                    class="form-input"
+                    name="guestCount"
+                    min="1"
+                    max="500"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="compositionFields"
+              class="service-fields"
+              style="display: none"
+            >
+              <div class="form-group">
+                <label class="required">Tipo de composição:</label>
+                <div class="radio-group">
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="compOriginal"
+                      name="compositionType"
+                      value="original"
+                    />
+                    <label for="compOriginal"
+                      >Composição totalmente original (nova música)</label
+                    >
+                  </div>
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="compArrangement"
+                      name="compositionType"
+                      value="arrangement"
+                    />
+                    <label for="compArrangement"
+                      >Arranjo personalizado de música existente</label
+                    >
+                  </div>
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="compOrchestration"
+                      name="compositionType"
+                      value="orchestration"
+                    />
+                    <label for="compOrchestration"
+                      >Orquestração (desenvolver ideia básica)</label
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Estilo musical desejado:</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  name="musicStyle"
+                  placeholder="Ex: MPB, Clássico, Rock, Jazz, Sertanejo..."
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <div></div>
+            <!-- Spacer -->
+            <button class="btn-form btn-next" id="nextStep1">
+              Próximo <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Personal Information -->
+        <div class="form-step" id="formStep2">
+          <h2><i class="fas fa-user"></i> Suas Informações</h2>
+
+          <div class="form-row">
+            <div class="form-group required">
+              <label>Nome completo:</label>
+              <input
+                type="text"
+                class="form-input"
+                name="fullName"
+                placeholder="Seu nome completo"
+              />
+            </div>
+
+            <div class="form-group required">
+              <label>Como gostaria de ser chamado:</label>
+              <input
+                type="text"
+                class="form-input"
+                name="preferredName"
+                placeholder="Nome para eu usar nas aulas"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group required">
+              <label>E-mail:</label>
+              <input
+                type="email"
+                class="form-input"
+                name="email"
+                placeholder="seu@email.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Telefone/WhatsApp:</label>
+              <input
+                type="tel"
+                class="form-input"
+                name="phone"
+                placeholder="(11) 99999-9999"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Cidade:</label>
+              <input
+                type="text"
+                class="form-input"
+                name="city"
+                placeholder="Sua cidade"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Estado:</label>
+              <select class="form-select" name="state">
+                <option value="">Selecione...</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Fuso horário preferido para contato/aulas:</label>
+            <select class="form-select" name="timezone">
+              <option value="">Selecione seu horário preferido...</option>
+              <option value="morning">Manhã (8h-12h)</option>
+              <option value="afternoon">Tarde (13h-18h)</option>
+              <option value="evening">Noite (19h-22h)</option>
+              <option value="flexible">Flexível (qualquer horário)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Como conheceu meus serviços?</label>
+            <select class="form-select" name="referralSource">
+              <option value="">Selecione...</option>
+              <option value="google">Google/Busca online</option>
+              <option value="social">Redes sociais</option>
+              <option value="recommendation">Indicação de amigo/aluno</option>
+              <option value="event">Me viu em algum evento</option>
+              <option value="other">Outro</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-form btn-prev" id="prevStep2">
+              <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <button class="btn-form btn-next" id="nextStep2">
+              Próximo <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Project Details -->
+        <div class="form-step" id="formStep3">
+          <h2><i class="fas fa-clipboard-list"></i> Detalhes do Projeto</h2>
+
+          <div id="dynamicFields">
+            <!-- Campos serão carregados dinamicamente baseados no tipo de serviço -->
+          </div>
+
+          <!-- Campos comuns a todos os serviços -->
+          <div class="form-group">
+            <label class="required"
+              >Descrição detalhada do que você precisa:</label
+            >
+            <textarea
+              class="form-textarea"
+              name="projectDescription"
+              placeholder="Descreva em detalhes o que você está procurando. Quanto mais informações, melhor conseguirei entender e atender suas expectativas."
+              rows="4"
+            ></textarea>
+            <div class="form-help">
+              Exemplo para transcrição: "Preciso da música X do artista Y,
+              principalmente a linha vocal e os acordes. Tempo aproximado:
+              1min30s a partir do segundo 0:45"
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Prazo desejado (se houver):</label>
+            <div class="form-row">
+              <div class="form-group">
+                <select class="form-select" name="deadlineType">
+                  <option value="no_deadline">Sem prazo específico</option>
+                  <option value="urgent">Urgente (até 3 dias)</option>
+                  <option value="soon">Breve (1-2 semanas)</option>
+                  <option value="normal">Normal (3-4 semanas)</option>
+                  <option value="flexible">
+                    Flexível (quando estiver pronto)
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="date"
+                  class="form-input"
+                  name="specificDeadline"
+                  min="<?php echo date('Y-m-d'); ?>"
+                  placeholder="Data específica (opcional)"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Orçamento estimado que você tem em mente:</label>
+            <div class="form-row">
+              <div class="form-group">
+                <select class="form-select" name="budgetRange">
+                  <option value="">Selecione uma faixa...</option>
+                  <option value="100-200">R$ 100 - R$ 200</option>
+                  <option value="200-350">R$ 200 - R$ 350</option>
+                  <option value="350-500">R$ 350 - R$ 500</option>
+                  <option value="500-750">R$ 500 - R$ 750</option>
+                  <option value="750+">Acima de R$ 750</option>
+                  <option value="discuss">Preciso discutir/orçamento</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-input"
+                  name="budgetNotes"
+                  placeholder="Observações sobre orçamento (opcional)"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Upload de arquivos (se aplicável):</label>
+            <input
+              type="file"
+              class="form-file"
+              name="projectFiles[]"
+              multiple
+              accept="audio/*,video/*,.mp3,.wav,.m4a,.pdf,.jpg,.png"
+            />
+            <div class="form-help">
+              Você pode enviar áudios, vídeos, imagens de partituras existentes
+              ou qualquer material de referência. Tamanho máximo: 50MB por
+              arquivo.
+            </div>
+
+            <div class="file-preview" id="filePreview"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Links de referência:</label>
+            <textarea
+              class="form-textarea"
+              name="referenceLinks"
+              placeholder="Cole aqui links do YouTube, Spotify, ou outros sites que mostrem o que você tem em mente."
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Alguma restrição ou preferência específica?</label>
+            <textarea
+              class="form-textarea"
+              name="restrictions"
+              placeholder="Ex: 'Não gosto de jazz', 'Preciso que seja simplificado para iniciante', 'Quero focar em técnica de solo', etc."
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-form btn-prev" id="prevStep3">
+              <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <button class="btn-form btn-next" id="nextStep3">
+              Próximo <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Review and Submit -->
+        <div class="form-step" id="formStep4">
+          <h2><i class="fas fa-check-circle"></i> Revisão Final</h2>
+
+          <div class="form-summary" id="formSummary">
+            <!-- Resumo será preenchido dinamicamente -->
+          </div>
+
+          <div class="form-group">
+            <label class="required">Mensagem adicional (opcional):</label>
+            <textarea
+              class="form-textarea"
+              name="finalMessage"
+              placeholder="Alguma última observação, pergunta ou informação que queira adicionar?"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <div class="checkbox-item">
+              <input
+                type="checkbox"
+                id="acceptTerms"
+                name="acceptTerms"
+                required
+              />
+              <label for="acceptTerms"
+                >Declaro que li e aceito os
+                <a href="termos.html" target="_blank">Termos de Serviço</a> e
+                <a href="privacidade.html" target="_blank"
+                  >Política de Privacidade</a
+                >
+                *</label
+              >
+            </div>
+
+            <div class="checkbox-item">
+              <input
+                type="checkbox"
+                id="receiveUpdates"
+                name="receiveUpdates"
+              />
+              <label for="receiveUpdates"
+                >Desejo receber atualizações sobre novos serviços, materiais
+                gratuitos e dicas musicais (pode cancelar a qualquer
+                momento)</label
+              >
+            </div>
+          </div>
+
+          <div class="progress-summary" id="progressSummary">
+            <p>
+              <i class="fas fa-sync-alt fa-spin"></i> Preparando envio do seu
+              projeto...
+            </p>
+            <div class="form-help">
+              Não feche esta página até a confirmação.
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-form btn-prev" id="prevStep4">
+              <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <button class="btn-form btn-submit" id="submitForm">
+              <i class="fas fa-paper-plane"></i> Enviar Projeto
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="form-help"
+        style="text-align: center; color: #aaa; margin-top: 2rem"
+      >
+        <p>
+          <i class="fas fa-question-circle"></i> Dúvidas? Entre em contato:
+          <strong>contato@danielgehlen.com</strong>
+        </p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          © 2026 Daniel Gehlen. Seu projeto musical com atenção aos detalhes.
+        </p>
+        <div class="footer-links">
+          <a href="privacidade.html">Política de Privacidade</a>
+          <a href="termos.html">Termos de Serviço</a>
+          <a href="mailto:contato@danielgehlen.com">Contato</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Gerenciamento de temas
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        if (savedTheme === "light") {
+          document.body.classList.add("light-mode");
+        }
+
+        // Elementos do formulário
+        const steps = document.querySelectorAll(".step");
+        const formSteps = document.querySelectorAll(".form-step");
+        let currentStep = 1;
+
+        // Service type selection
+        const serviceRadios = document.querySelectorAll(
+          'input[name="serviceType"]',
+        );
+        const serviceSpecific = document.getElementById("serviceSpecific");
+        const serviceFields = {
+          transcription: document.getElementById("transcriptionFields"),
+          lessons: document.getElementById("lessonsFields"),
+          events: document.getElementById("eventsFields"),
+          composition: document.getElementById("compositionFields"),
+        };
+
+        let selectedService = null;
+
+        // Show/hide service specific fields
+        serviceRadios.forEach((radio) => {
+          radio.addEventListener("change", function () {
+            selectedService = this.value;
+
+            // Show service specific section
+            serviceSpecific.style.display = "block";
+
+            // Hide all fields first
+            Object.values(serviceFields).forEach((field) => {
+              if (field) field.style.display = "none";
+            });
+
+            // Show relevant fields
+            if (serviceFields[selectedService]) {
+              serviceFields[selectedService].style.display = "block";
+            }
+          });
+        });
+
+        // File preview
+        const fileInput = document.querySelector(
+          'input[name="projectFiles[]"]',
+        );
+        const filePreview = document.getElementById("filePreview");
+
+        fileInput.addEventListener("change", function () {
+          filePreview.innerHTML = "";
+
+          if (this.files.length > 0) {
+            Array.from(this.files).forEach((file) => {
+              const fileItem = document.createElement("div");
+              fileItem.className = "file-preview-item";
+              fileItem.innerHTML = `
+                            <i class="fas fa-file-audio"></i>
+                            <span>${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                        `;
+              filePreview.appendChild(fileItem);
+            });
+          } else {
+            filePreview.innerHTML = "<p>Nenhum arquivo selecionado</p>";
+          }
+        });
+
+        // Step navigation
+        function updateSteps() {
+          // Update stepper UI
+          steps.forEach((step, index) => {
+            step.classList.remove("active", "completed");
+            if (index + 1 < currentStep) {
+              step.classList.add("completed");
+            } else if (index + 1 === currentStep) {
+              step.classList.add("active");
+            }
+          });
+
+          // Update form steps
+          formSteps.forEach((step) => {
+            step.classList.remove("active");
+            if (step.id === `formStep${currentStep}`) {
+              step.classList.add("active");
+            }
+          });
+
+          // Load dynamic fields for step 3
+          if (currentStep === 3) {
+            loadDynamicFields();
+          }
+
+          // Load summary for step 4
+          if (currentStep === 4) {
+            loadSummary();
+          }
+        }
+
+        // Next/Previous buttons
+        document
+          .getElementById("nextStep1")
+          .addEventListener("click", function () {
+            if (!selectedService) {
+              alert(
+                "Por favor, selecione um tipo de serviço antes de continuar.",
+              );
+              return;
+            }
+            currentStep = 2;
+            updateSteps();
+          });
+
+        document
+          .getElementById("nextStep2")
+          .addEventListener("click", function () {
+            // Basic validation
+            const requiredFields = document.querySelectorAll(
+              "#formStep2 .required input, #formStep2 .required select",
+            );
+            let valid = true;
+
+            requiredFields.forEach((field) => {
+              if (!field.value.trim()) {
+                valid = false;
+                field.style.borderColor = "#e74c3c";
+              } else {
+                field.style.borderColor = "";
+              }
+            });
+
+            if (!valid) {
+              alert(
+                "Por favor, preencha todos os campos obrigatórios marcados com *.",
+              );
+              return;
+            }
+
+            currentStep = 3;
+            updateSteps();
+          });
+
+        document
+          .getElementById("nextStep3")
+          .addEventListener("click", function () {
+            if (
+              !document
+                .querySelector('textarea[name="projectDescription"]')
+                .value.trim()
+            ) {
+              alert("Por favor, descreva seu projeto antes de continuar.");
+              return;
+            }
+
+            currentStep = 4;
+            updateSteps();
+          });
+
+        // Previous buttons
+        document
+          .getElementById("prevStep2")
+          .addEventListener("click", function () {
+            currentStep = 1;
+            updateSteps();
+          });
+
+        document
+          .getElementById("prevStep3")
+          .addEventListener("click", function () {
+            currentStep = 2;
+            updateSteps();
+          });
+
+        document
+          .getElementById("prevStep4")
+          .addEventListener("click", function () {
+            currentStep = 3;
+            updateSteps();
+          });
+
+        // Dynamic fields for step 3 based on service type
+        function loadDynamicFields() {
+          const dynamicFields = document.getElementById("dynamicFields");
+          dynamicFields.innerHTML = "";
+
+          if (!selectedService) return;
+
+          let html = "";
+
+          switch (selectedService) {
+            case "transcription":
+              html = `
+                            <div class="service-specific">
+                                <h3><i class="fas fa-music"></i> Detalhes da Transcrição</h3>
+
+                                <div class="form-group">
+                                    <label class="required">Título da música (se conhecido):</label>
+                                    <input type="text" class="form-input" name="songTitle" placeholder="Ex: 'Garota de Ipanema'">
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Artista/Banda:</label>
+                                        <input type="text" class="form-input" name="artistName" placeholder="Ex: Tom Jobim">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Tom original (se souber):</label>
+                                        <input type="text" class="form-input" name="originalKey" placeholder="Ex: Ré Maior (D)">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Partes específicas que precisa (se aplicável):</label>
+                                    <textarea class="form-textarea" name="specificParts" placeholder="Ex: 'Só preciso do solo de guitarra entre 1:20 e 2:15', 'Apenas a linha de baixo', etc." rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nível de dificuldade desejado:</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="diffEasy" name="difficultyLevel" value="easy">
+                                            <label for="diffEasy">Simplificado (para iniciantes)</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="diffMedium" name="difficultyLevel" value="medium">
+                                            <label for="diffMedium">Original (como no áudio)</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="diffHard" name="difficultyLevel" value="hard">
+                                            <label for="diffHard">Avançado (com todas as nuances)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+              break;
+
+            case "lessons":
+              html = `
+                            <div class="service-specific">
+                                <h3><i class="fas fa-graduation-cap"></i> Objetivos das Aulas</h3>
+
+                                <div class="form-group">
+                                    <label class="required">Seus principais objetivos:</label>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="goalBasics" name="lessonGoals[]" value="basics">
+                                            <label for="goalBasics">Aprender o básico (primeiros acordes, batidas)</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="goalSongs" name="lessonGoals[]" value="songs">
+                                            <label for="goalSongs">Tocar músicas específicas</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="goalTheory" name="lessonGoals[]" value="theory">
+                                            <label for="goalTheory">Entender teoria musical</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="goalTechnique" name="lessonGoals[]" value="technique">
+                                            <label for="goalTechnique">Melhorar técnica (dedilhado, palhetada)</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="goalImprov" name="lessonGoals[]" value="improv">
+                                            <label for="goalImprov">Improvisação/solos</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="goalCompose" name="lessonGoals[]" value="compose">
+                                            <label for="goalCompose">Compor minhas próprias músicas</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Estilos musicais de interesse:</label>
+                                    <input type="text" class="form-input" name="musicInterests" placeholder="Ex: MPB, Rock, Sertanejo, Pop Internacional...">
+                                    <div class="form-help">Isso me ajuda a preparar material relevante para você</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Músicas específicas que gostaria de aprender:</label>
+                                    <textarea class="form-textarea" name="desiredSongs" placeholder="Liste algumas músicas que você adoraria tocar (artista - música)" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Já teve aulas antes?</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="experienceNone" name="previousExperience" value="none">
+                                            <label for="experienceNone">Nunca</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="experienceSome" name="previousExperience" value="some">
+                                            <label for="experienceSome">Algumas aulas/cursos online</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="experienceRegular" name="previousExperience" value="regular">
+                                            <label for="experienceRegular">Já fiz aulas regulares antes</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Quanto tempo por semana pretende praticar?</label>
+                                    <select class="form-select" name="practiceTime">
+                                        <option value="">Selecione...</option>
+                                        <option value="less1h">Menos de 1 hora</option>
+                                        <option value="1-3h">1-3 horas</option>
+                                        <option value="3-5h">3-5 horas</option>
+                                        <option value="5+h">Mais de 5 horas</option>
+                                    </select>
+                                </div>
+                            </div>
+                        `;
+              break;
+
+            case "events":
+              html = `
+                            <div class="service-specific">
+                                <h3><i class="fas fa-glass-cheers"></i> Detalhes do Evento</h3>
+
+                                <div class="form-group">
+                                    <label>Local do evento (endereço ou cidade):</label>
+                                    <input type="text" class="form-input" name="eventLocation" placeholder="Ex: Porto Alegre/RS ou endereço completo">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Ambiente do evento:</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="venueIndoor" name="eventVenue" value="indoor">
+                                            <label for="venueIndoor">Interno (salão, restaurante, casa)</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="venueOutdoor" name="eventVenue" value="outdoor">
+                                            <label for="venueOutdoor">Externo (jardim, varanda, pátio)</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="venueMixed" name="eventVenue" value="mixed">
+                                            <label for="venueMixed">Misto (área coberta e descoberta)</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Há equipamento de som disponível no local?</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="soundYes" name="soundEquipment" value="yes">
+                                            <label for="soundYes">Sim, completo</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="soundPartial" name="soundEquipment" value="partial">
+                                            <label for="soundPartial">Parcial (precisarei trazer alguns itens)</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="soundNo" name="soundEquipment" value="no">
+                                            <label for="soundNo">Não, preciso trazer tudo</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Repertório desejado:</label>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Estilo principal:</label>
+                                            <select class="form-select" name="eventStyle">
+                                                <option value="">Selecione...</option>
+                                                <option value="classical">Clássico/Erudito</option>
+                                                <option value="mpb">MPB/Bossa Nova</option>
+                                                <option value="international">Internacional/Pop</option>
+                                                <option value="mixed">Misto (vários estilos)</option>
+                                                <option value="custom">Personalizado (especificar abaixo)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Intensidade musical:</label>
+                                            <select class="form-select" name="musicIntensity">
+                                                <option value="">Selecione...</option>
+                                                <option value="background">Música de fundo (discreta)</option>
+                                                <option value="interactive">Interativa (chama atenção)</option>
+                                                <option value="featured">Destaque (momentos específicos)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Músicas específicas que gostaria no repertório:</label>
+                                    <textarea class="form-textarea" name="eventPlaylist" placeholder="Liste músicas, artistas ou estilos que devem (ou não devem) ser incluídos" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Momento especial que requer música específica?</label>
+                                    <textarea class="form-textarea" name="specialMoments" placeholder="Ex: 'Entrada da noiva com música X', 'Primeira dança com música Y', etc." rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Há algum código de vestimenta ou outra exigência?</label>
+                                    <input type="text" class="form-input" name="dressCode" placeholder="Ex: 'Traje social preto', 'Esperamos que chegue 1h antes', etc.">
+                                </div>
+                            </div>
+                        `;
+              break;
+
+            case "composition":
+              html = `
+                            <div class="service-specific">
+                                <h3><i class="fas fa-pen-nib"></i> Detalhes da Composição</h3>
+
+                                <div class="form-group">
+                                    <label class="required">Título provisório (se já tiver):</label>
+                                    <input type="text" class="form-input" name="compositionTitle" placeholder="Ex: 'Canção para Maria'">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Inspirações ou referências:</label>
+                                    <textarea class="form-textarea" name="compositionInspirations" placeholder="Descreva o clima, emoção, artistas ou músicas que servem de inspiração" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Andamento (velocidade) desejado:</label>
+                                        <select class="form-select" name="tempo">
+                                            <option value="">Selecione...</option>
+                                            <option value="slow">Lento (balada, emocional)</option>
+                                            <option value="moderate">Moderado (média, confortável)</option>
+                                            <option value="fast">Rápido (animado, energético)</option>
+                                            <option value="varies">Variado (muda ao longo da música)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Tom sugerido (se tiver preferência):</label>
+                                        <input type="text" class="form-input" name="suggestedKey" placeholder="Ex: Lá menor (Am), Sol maior (G)">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Estrutura desejada:</label>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="structureIntro" name="compositionStructure[]" value="intro">
+                                            <label for="structureIntro">Introdução</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="structureVerse" name="compositionStructure[]" value="verse">
+                                            <label for="structureVerse">Versos</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="structureChorus" name="compositionStructure[]" value="chorus">
+                                            <label for="structureChorus">Refrão</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="structureBridge" name="compositionStructure[]" value="bridge">
+                                            <label for="structureBridge">Ponte</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="structureSolo" name="compositionStructure[]" value="solo">
+                                            <label for="structureSolo">Solo instrumental</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="structureOutro" name="compositionStructure[]" value="outro">
+                                            <label for="structureOutro">Final/Outro</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Instrumentação desejada:</label>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="instGuitarComp" name="compositionInstruments[]" value="guitar">
+                                            <label for="instGuitarComp">Violão/Guitarra (principal)</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="instVoice" name="compositionInstruments[]" value="voice">
+                                            <label for="instVoice">Voz (para letra)</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="instBass" name="compositionInstruments[]" value="bass">
+                                            <label for="instBass">Baixo</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="instDrums" name="compositionInstruments[]" value="drums">
+                                            <label for="instDrums">Bateria/Percussão</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="instKeys" name="compositionInstruments[]" value="keys">
+                                            <label for="instKeys">Teclado/Piano</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="instStrings" name="compositionInstruments[]" value="strings">
+                                            <label for="instStrings">Cordas (violino, cello)</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Você já tem alguma parte pronta?</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="materialNone" name="existingMaterial" value="none">
+                                            <label for="materialNone">Nada, quero começar do zero</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="materialMelody" name="existingMaterial" value="melody">
+                                            <label for="materialMelody">Tenho uma melodia/ideia básica</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="materialChords" name="existingMaterial" value="chords">
+                                            <label for="materialChords">Tenho acordes/progressão</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="materialLyrics" name="existingMaterial" value="lyrics">
+                                            <label for="materialLyrics">Tenho a letra/poema</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="materialDemo" name="existingMaterial" value="demo">
+                                            <label for="materialDemo">Tenho uma demo/gravação simples</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Se já tem material, descreva-o:</label>
+                                    <textarea class="form-textarea" name="existingMaterialDesc" placeholder="Descreva o que você já criou ou tem em mente" rows="3"></textarea>
+                                </div>
+                            </div>
+                        `;
+              break;
+          }
+
+          dynamicFields.innerHTML = html;
+        }
+
+        // Load summary for step 4
+        function loadSummary() {
+          const summary = document.getElementById("formSummary");
+          const formData = new FormData(document.querySelector("form"));
+          let html = "<h3>Resumo do seu projeto:</h3>";
+
+          // Service type
+          const serviceNames = {
+            transcription: "Transcrição de Áudio para Partitura",
+            lessons: "Aulas Online",
+            events: "Música para Eventos",
+            composition: "Criação/Composição",
+          };
+
+          html += `<div class="summary-item">
+                    <div class="summary-label">Tipo de serviço:</div>
+                    <div class="summary-value">${serviceNames[selectedService] || "Não selecionado"}</div>
+                </div>`;
+
+          // Personal info
+          const name =
+            document.querySelector('input[name="fullName"]')?.value ||
+            "Não informado";
+          const email =
+            document.querySelector('input[name="email"]')?.value ||
+            "Não informado";
+
+          html += `<div class="summary-item">
+                    <div class="summary-label">Nome:</div>
+                    <div class="summary-value">${name}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">E-mail:</div>
+                    <div class="summary-value">${email}</div>
+                </div>`;
+
+          // Project description
+          const description =
+            document.querySelector('textarea[name="projectDescription"]')
+              ?.value || "Não informado";
+          html += `<div class="summary-item">
+                    <div class="summary-label">Descrição do projeto:</div>
+                    <div class="summary-value">${description.substring(0, 200)}${description.length > 200 ? "..." : ""}</div>
+                </div>`;
+
+          // Budget
+          const budget =
+            document.querySelector('select[name="budgetRange"]')?.value ||
+            "Não informado";
+          if (budget && budget !== "") {
+            html += `<div class="summary-item">
+                        <div class="summary-label">Faixa de orçamento:</div>
+                        <div class="summary-value">${budget}</div>
+                    </div>`;
+          }
+
+          // Files
+          const files = fileInput.files;
+          if (files.length > 0) {
+            html += `<div class="summary-item">
+                        <div class="summary-label">Arquivos anexados:</div>
+                        <div class="summary-value">${files.length} arquivo(s)</div>
+                    </div>`;
+          }
+
+          summary.innerHTML = html;
+        }
+
+        // Form submission
+        document
+          .getElementById("submitForm")
+          .addEventListener("click", function () {
+            if (!document.getElementById("acceptTerms").checked) {
+              alert(
+                "Você precisa aceitar os Termos de Serviço e Política de Privacidade para enviar o projeto.",
+              );
+              return;
+            }
+
+            // Show progress
+            const progress = document.getElementById("progressSummary");
+            progress.style.display = "block";
+
+            // Simulate form submission (in a real scenario, this would be AJAX)
+            setTimeout(() => {
+              alert(
+                "✅ Projeto enviado com sucesso!\n\nEm breve entrarei em contato pelo e-mail fornecido para discutirmos os próximos passos.\n\nObrigado por confiar no meu trabalho!",
+              );
+
+              // Redirect to thank you page or home
+              window.location.href = "index.html";
+            }, 2000);
+          });
+
+        // Initialize
+        updateSteps();
+      });
+    </script>
+  </body>
+</html>

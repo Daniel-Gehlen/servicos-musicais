@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biblioteca de Partituras | Daniel Gehlen</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <i class="fas fa-music"></i>
+        <span>Daniel Gehlen</span>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <!-- Atualizado -->
+          <li><a href="index.html#servicos">Serviços</a></li>
+          <li><a href="audio.html">Amostras de Áudio</a></li>
+          <li><a href="library.html" class="active">Biblioteca</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input
+          type="text"
+          id="librarySearch"
+          placeholder="Pesquisar partituras..."
+        />
+      </div>
+    </header>
+
+    <!-- Library Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Biblioteca de <span>Partituras</span></h1>
+        <p>
+          Explore partituras transcritas e criadas profissionalmente. Filtre por
+          instrumento, dificuldade ou estilo para encontrar o material ideal
+          para seu estudo ou apresentação.
+        </p>
+      </div>
+    </section>
+
+    <!-- Library Content -->
+    <section class="library-section">
+      <div class="container">
+        <div class="library-controls">
+          <div class="filter-section">
+            <h3>Filtrar Partituras</h3>
+            <div class="filter-options">
+              <div class="filter-group">
+                <h4>Instrumento</h4>
+                <div class="filter-buttons">
+                  <button class="filter-btn active" data-filter="all">
+                    Todos
+                  </button>
+                  <button class="filter-btn" data-filter="violao">
+                    Violão
+                  </button>
+                  <button class="filter-btn" data-filter="guitarra">
+                    Guitarra
+                  </button>
+                  <button class="filter-btn" data-filter="ukulele">
+                    Ukulele
+                  </button>
+                  <button class="filter-btn" data-filter="voz">Voz</button>
+                </div>
+              </div>
+
+              <div class="filter-group">
+                <h4>Dificuldade</h4>
+                <div class="filter-buttons">
+                  <button class="filter-btn" data-filter="iniciante">
+                    Iniciante
+                  </button>
+                  <button class="filter-btn" data-filter="intermediario">
+                    Intermediário
+                  </button>
+                  <button class="filter-btn" data-filter="avancado">
+                    Avançado
+                  </button>
+                </div>
+              </div>
+
+              <div class="filter-group">
+                <h4>Categoria</h4>
+                <div class="filter-buttons">
+                  <button class="filter-btn" data-filter="classico">
+                    Clássico
+                  </button>
+                  <button class="filter-btn" data-filter="popular">
+                    Popular
+                  </button>
+                  <button class="filter-btn" data-filter="original">
+                    Original
+                  </button>
+                  <button class="filter-btn" data-filter="evento">
+                    Para Eventos
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sort-section">
+            <label for="sortSelect">Ordenar por:</label>
+            <select id="sortSelect">
+              <option value="recent">Mais Recentes</option>
+              <option value="popular">Mais Populares</option>
+              <option value="az">A-Z</option>
+              <option value="difficulty">Dificuldade</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="sheet-music-grid" id="sheetMusicGrid">
+          <!-- Partituras serão carregadas aqui via JavaScript -->
+        </div>
+
+        <div class="library-info">
+          <h3>Como Usar Esta Biblioteca</h3>
+          <div class="info-cards">
+            <div class="info-card">
+              <i class="fas fa-search"></i>
+              <h4>Encontre Partituras</h4>
+              <p>
+                Use os filtros para encontrar partituras por instrumento,
+                dificuldade ou estilo musical.
+              </p>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-eye"></i>
+              <h4>Visualize Antes de Baixar</h4>
+              <p>
+                Clique em qualquer partitura para visualizar uma prévia antes de
+                fazer o download.
+              </p>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-download"></i>
+              <h4>Download em Formatos Variados</h4>
+              <p>
+                Baixe as partituras em PDF, PNG ou formatos editáveis para seu
+                software de notação.
+              </p>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-custom"></i>
+              <h4>Solicite Personalizações</h4>
+              <p>
+                Precisa de uma versão adaptada? Entre em contato para solicitar
+                modificações.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="library-cta">
+          <h3>Não Encontrou o que Procurava?</h3>
+          <p>
+            Solicite uma transcrição personalizada de qualquer música ou áudio
+          </p>
+          <a href="index.html#progresso" class="btn btn-primary"
+            >Solicitar Transcrição Personalizada</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          © 2026 Daniel Gehlen. Biblioteca de partituras para estudo e
+          performance.
+        </p>
+        <div class="footer-links">
+          <a href="#privacidade">Política de Privacidade</a>
+          <a href="#termos">Termos de Uso</a>
+          <a href="mailto:contato@danielgehlen.com">Contato</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Library Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Dados das partituras
+        const sheetMusicData = [
+          {
+            id: 1,
+            title: "Andante - Matteo Carcassi",
+            instrument: "violao",
+            difficulty: "intermediario",
+            category: "classico",
+            description:
+              "Peça clássica para violão solo, ideal para estudo de expressividade.",
+            pages: 3,
+            downloads: 142,
+            recent: true,
+          },
+          {
+            id: 2,
+            title: "Bourrée - J.S. Bach",
+            instrument: "violao",
+            difficulty: "avancado",
+            category: "classico",
+            description:
+              "Transcrição para violão da famosa peça barroca originalmente para violino.",
+            pages: 2,
+            downloads: 89,
+            recent: true,
+          },
+          {
+            id: 3,
+            title: "Noite Feliz (Arranjo Solo)",
+            instrument: "violao",
+            difficulty: "iniciante",
+            category: "evento",
+            description:
+              "Arranjo especial para violão solo da tradicional música natalina.",
+            pages: 2,
+            downloads: 215,
+            recent: false,
+          },
+          {
+            id: 4,
+            title: "Blues em Mi - Guitarra",
+            instrument: "guitarra",
+            difficulty: "intermediario",
+            category: "popular",
+            description:
+              "Progressão de blues com tablatura e notação musical completa.",
+            pages: 1,
+            downloads: 178,
+            recent: true,
+          },
+          {
+            id: 5,
+            title: "Hava Nagila - Ukulele",
+            instrument: "ukulele",
+            difficulty: "iniciante",
+            category: "popular",
+            description:
+              "Música tradicional hebraica adaptada para ukulele com cifras.",
+            pages: 1,
+            downloads: 94,
+            recent: false,
+          },
+          {
+            id: 6,
+            title: "Valsa Original - Composição Própria",
+            instrument: "violao",
+            difficulty: "intermediario",
+            category: "original",
+            description:
+              "Valsa original composta especialmente para violão solo.",
+            pages: 4,
+            downloads: 63,
+            recent: true,
+          },
+          {
+            id: 7,
+            title: "Stand by Me - Voz e Violão",
+            instrument: "voz",
+            difficulty: "iniciante",
+            category: "popular",
+            description:
+              "Arranjo para voz e violão da famosa música de Ben E. King.",
+            pages: 3,
+            downloads: 231,
+            recent: false,
+          },
+          {
+            id: 8,
+            title: "Minuet em Ré - G.F. Handel",
+            instrument: "violao",
+            difficulty: "intermediario",
+            category: "classico",
+            description:
+              "Peça do período barroco, ideal para estudo de articulação.",
+            pages: 2,
+            downloads: 76,
+            recent: true,
+          },
+          {
+            id: 9,
+            title: "Hotel California - Solo de Guitarra",
+            instrument: "guitarra",
+            difficulty: "avancado",
+            category: "popular",
+            description:
+              "Transcrição detalhada do famoso solo de guitarra dos Eagles.",
+            pages: 5,
+            downloads: 312,
+            recent: true,
+          },
+          {
+            id: 10,
+            title: "Somewhere Over the Rainbow - Ukulele",
+            instrument: "ukulele",
+            difficulty: "iniciante",
+            category: "popular",
+            description:
+              'Arranjo simplificado para ukulele da música de "O Mágico de Oz".',
+            pages: 2,
+            downloads: 198,
+            recent: false,
+          },
+        ];
+
+        // Elementos do DOM
+        const sheetMusicGrid = document.getElementById("sheetMusicGrid");
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const sortSelect = document.getElementById("sortSelect");
+        const searchInput = document.getElementById("librarySearch");
+
+        let currentFilter = "all";
+        let currentSort = "recent";
+        let currentSearch = "";
+
+        // Renderizar partituras
+        function renderSheetMusic() {
+          // Filtrar dados
+          let filteredData = sheetMusicData.filter((item) => {
+            // Filtro por categoria
+            if (
+              currentFilter !== "all" &&
+              item.instrument !== currentFilter &&
+              item.difficulty !== currentFilter &&
+              item.category !== currentFilter
+            ) {
+              return false;
+            }
+
+            // Filtro por busca
+            if (
+              currentSearch &&
+              !item.title.toLowerCase().includes(currentSearch.toLowerCase()) &&
+              !item.description
+                .toLowerCase()
+                .includes(currentSearch.toLowerCase())
+            ) {
+              return false;
+            }
+
+            return true;
+          });
+
+          // Ordenar dados
+          filteredData.sort((a, b) => {
+            switch (currentSort) {
+              case "recent":
+                return b.recent - a.recent || b.downloads - a.downloads;
+              case "popular":
+                return b.downloads - a.downloads;
+              case "az":
+                return a.title.localeCompare(b.title);
+              case "difficulty":
+                const difficultyOrder = {
+                  iniciante: 1,
+                  intermediario: 2,
+                  avancado: 3,
+                };
+                return (
+                  difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]
+                );
+              default:
+                return 0;
+            }
+          });
+
+          // Limpar grid
+          sheetMusicGrid.innerHTML = "";
+
+          // Renderizar partituras
+          filteredData.forEach((item) => {
+            const difficultyLabels = {
+              iniciante: "Iniciante",
+              intermediario: "Intermediário",
+              avancado: "Avançado",
+            };
+
+            const instrumentIcons = {
+              violao: "fa-guitar",
+              guitarra: "fa-guitar-electric",
+              ukulele: "fa-guitar",
+              voz: "fa-microphone",
+            };
+
+            const sheetElement = document.createElement("div");
+            sheetElement.className = "sheet-music-card";
+            sheetElement.innerHTML = `
+                            <div class="sheet-header">
+                                <div class="sheet-icon">
+                                    <i class="fas ${instrumentIcons[item.instrument]}"></i>
+                                </div>
+                                ${item.recent ? '<span class="new-badge">NOVO</span>' : ""}
+                            </div>
+                            <div class="sheet-content">
+                                <h4>${item.title}</h4>
+                                <p>${item.description}</p>
+                                <div class="sheet-meta">
+                                    <span><i class="fas fa-file-alt"></i> ${item.pages} página${item.pages > 1 ? "s" : ""}</span>
+                                    <span><i class="fas fa-download"></i> ${item.downloads}</span>
+                                    <span class="difficulty ${item.difficulty}">${difficultyLabels[item.difficulty]}</span>
+                                </div>
+                            </div>
+                            <div class="sheet-actions">
+                                <button class="btn-preview" data-id="${item.id}">
+                                    <i class="fas fa-eye"></i> Visualizar
+                                </button>
+                                <button class="btn-download" data-id="${item.id}">
+                                    <i class="fas fa-download"></i> Baixar
+                                </button>
+                            </div>
+                        `;
+
+            sheetMusicGrid.appendChild(sheetElement);
+          });
+
+          // Adicionar eventos aos botões
+          document.querySelectorAll(".btn-preview").forEach((btn) => {
+            btn.addEventListener("click", function () {
+              const id = this.getAttribute("data-id");
+              const item = sheetMusicData.find((s) => s.id == id);
+              alert(
+                `Visualizando prévia: "${item.title}"\n\nEm um site real, isso abriria um visualizador de PDF.`,
+              );
+            });
+          });
+
+          document.querySelectorAll(".btn-download").forEach((btn) => {
+            btn.addEventListener("click", function () {
+              const id = this.getAttribute("data-id");
+              const item = sheetMusicData.find((s) => s.id == id);
+              alert(
+                `Iniciando download: "${item.title}"\n\nEm um site real, isso iniciaria o download do arquivo PDF.`,
+              );
+            });
+          });
+        }
+
+        // Eventos dos filtros
+        filterButtons.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            // Remover active de todos
+            filterButtons.forEach((b) => b.classList.remove("active"));
+
+            // Adicionar active ao clicado
+            this.classList.add("active");
+
+            // Atualizar filtro
+            currentFilter = this.getAttribute("data-filter");
+
+            // Renderizar
+            renderSheetMusic();
+          });
+        });
+
+        // Evento do ordenamento
+        sortSelect.addEventListener("change", function () {
+          currentSort = this.value;
+          renderSheetMusic();
+        });
+
+        // Evento da busca
+        if (searchInput) {
+          searchInput.addEventListener("input", function () {
+            currentSearch = this.value;
+            renderSheetMusic();
+          });
+
+          searchInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              currentSearch = this.value;
+              renderSheetMusic();
+            }
+          });
+        }
+
+        // Tema (reutilizado)
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        if (savedTheme === "light") {
+          document.body.classList.add("light-mode");
+        }
+
+        // Inicializar
+        renderSheetMusic();
+      });
+    </script>
+
+    <style>
+      .library-section {
+        padding: 4rem 0;
+      }
+
+      .library-controls {
+        background-color: var(--card-bg);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        border: 1px solid var(--border);
+      }
+
+      .filter-section h3 {
+        margin-bottom: 1.5rem;
+        color: var(--accent);
+      }
+
+      .filter-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .filter-group h4 {
+        margin-bottom: 1rem;
+        color: #ccc;
+        font-size: 1rem;
+      }
+
+      body.light-mode .filter-group h4 {
+        color: #666;
+      }
+
+      .filter-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        color: var(--text);
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+      }
+
+      body.light-mode .filter-btn {
+        background-color: rgba(0, 0, 0, 0.03);
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background-color: var(--accent);
+        color: var(--primary);
+        border-color: var(--accent);
+      }
+
+      .sort-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .sort-section label {
+        font-weight: 500;
+      }
+
+      .sort-section select {
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        color: var(--text);
+        font-size: 1rem;
+      }
+
+      body.light-mode .sort-section select {
+        background-color: white;
+        color: #333;
+      }
+
+      .sheet-music-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .sheet-music-card {
+        background-color: var(--card-bg);
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .sheet-music-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px var(--shadow);
+        border-color: var(--accent);
+      }
+
+      .sheet-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 1.5rem 1.5rem 0;
+      }
+
+      .sheet-icon {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(15, 204, 69, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sheet-icon i {
+        font-size: 1.5rem;
+        color: var(--accent);
+      }
+
+      .new-badge {
+        background-color: var(--accent);
+        color: var(--primary);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .sheet-content {
+        padding: 1.5rem;
+      }
+
+      .sheet-content h4 {
+        margin-bottom: 0.8rem;
+        color: var(--accent);
+      }
+
+      .sheet-content p {
+        color: #ccc;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+      }
+
+      body.light-mode .sheet-content p {
+        color: #666;
+      }
+
+      .sheet-meta {
+        display: flex;
+        justify-content: space-between;
+        color: #aaa;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .sheet-meta i {
+        margin-right: 0.3rem;
+      }
+
+      .difficulty {
+        padding: 0.2rem 0.6rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.8rem;
+      }
+
+      .difficulty.iniciante {
+        background-color: rgba(46, 204, 113, 0.2);
+        color: #2ecc71;
+      }
+
+      .difficulty.intermediario {
+        background-color: rgba(52, 152, 219, 0.2);
+        color: #3498db;
+      }
+
+      .difficulty.avancado {
+        background-color: rgba(231, 76, 60, 0.2);
+        color: #e74c3c;
+      }
+
+      .sheet-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid var(--border);
+      }
+
+      .btn-preview,
+      .btn-download {
+        padding: 1rem;
+        background: transparent;
+        border: none;
+        color: var(--text);
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-weight: 500;
+      }
+
+      .btn-preview {
+        border-right: 1px solid var(--border);
+      }
+
+      .btn-preview:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .btn-download:hover {
+        background-color: rgba(15, 204, 69, 0.1);
+      }
+
+      .library-info {
+        margin: 4rem 0;
+      }
+
+      .library-info h3 {
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--accent);
+      }
+
+      .info-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .info-card {
+        text-align: center;
+        padding: 2rem 1.5rem;
+        background-color: var(--card-bg);
+        border-radius: 15px;
+        border: 1px solid var(--border);
+      }
+
+      .info-card i {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
+      .info-card h4 {
+        margin-bottom: 1rem;
+      }
+
+      .info-card p {
+        color: #ccc;
+        font-size: 0.95rem;
+      }
+
+      body.light-mode .info-card p {
+        color: #666;
+      }
+
+      .library-cta {
+        text-align: center;
+        padding: 3rem;
+        background: linear-gradient(
+          135deg,
+          var(--secondary) 0%,
+          var(--primary) 100%
+        );
+        border-radius: 15px;
+        border: 1px solid var(--border);
+      }
+
+      body.light-mode .library-cta {
+        background: linear-gradient(135deg, #e6e9ef 0%, #f0f2f5 100%);
+      }
+
+      .library-cta h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: var(--accent);
+      }
+
+      .library-cta p {
+        margin-bottom: 2rem;
+        color: #ccc;
+      }
+
+      body.light-mode .library-cta p {
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .filter-options {
+          grid-template-columns: 1fr;
+        }
+
+        .sheet-music-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .info-cards {
+          grid-template-columns: 1fr;
+        }
+
+        .library-cta {
+          padding: 2rem 1.5rem;
+        }
+      }
+    </style>
+  </body>
+</html>

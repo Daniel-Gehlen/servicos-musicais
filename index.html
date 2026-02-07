@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daniel Gehlen | Serviços Musicais</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <i class="fas fa-music"></i>
+        <span>Daniel Gehlen</span>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Início</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <!-- Atualizado -->
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="audio.html">Amostras de Áudio</a></li>
+          <li><a href="library.html">Biblioteca</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Pesquisar partituras..."
+        />
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Dê vida em <span class="typing-text">projetos musicais</span></h1>
+        <p>
+          Transforme sua experiência musical com aulas online, transcrição
+          profissional de partituras e música de excelência para eventos. Smart
+          Highlighting com efeito de escrita para melhor aprendizado.
+        </p>
+
+        <div class="cta-buttons">
+          <button class="btn btn-primary" id="startProjectBtn">
+            <a
+              href="projeto-formulario.html"
+              class="btn btn-primary"
+              id="startProjectBtn"
+            >
+              Começar seu projeto musical
+            </a>
+          </button>
+          <button class="btn btn-secondary" id="viewProgressBtn">
+            Ver Progresso
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="sobre">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-image">
+            <div class="image-frame">
+              <img
+                src="resources/eu-perfil.png"
+                alt="Daniel Gehlen - Professor de Música"
+                id="profileImage"
+              />
+              <div class="image-overlay">
+                <div class="overlay-content">
+                  <i class="fas fa-music"></i>
+                  <span>20+ anos de experiência</span>
+                </div>
+              </div>
+            </div>
+            <div class="image-badge">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Licenciado UFRGS</span>
+            </div>
+          </div>
+
+          <div class="about-text">
+            <h2><span class="accent-text">Sobre</span> Daniel Gehlen</h2>
+            <div class="title-divider"></div>
+
+            <div class="about-quote">
+              <i class="fas fa-quote-left"></i>
+              <p>
+                Transformando paixão musical em aprendizado estruturado e
+                significativo
+              </p>
+              <i class="fas fa-quote-right"></i>
+            </div>
+
+            <div class="about-description">
+              <p>
+                <strong>Daniel Gehlen é licenciado em Música pela UFRGS</strong>
+                com especialização em ensino de cordas dedilhadas, ênfase no
+                violão. Atua há 20 anos como professor em escolas de música,
+                projetos sociais e de forma particular online.
+              </p>
+
+              <p>
+                Desenvolveu seu método observando as dificuldades recorrentes de
+                iniciantes e as necessidades práticas de educadores musicais,
+                criando uma abordagem que combina:
+              </p>
+
+              <div class="method-highlights">
+                <div class="method-item">
+                  <div class="method-icon">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                  <div class="method-text">
+                    <h4>Fundamentos Sólidos</h4>
+                    <p>Base teórica aplicada de forma prática e gradual</p>
+                  </div>
+                </div>
+
+                <div class="method-item">
+                  <div class="method-icon">
+                    <i class="fas fa-heart"></i>
+                  </div>
+                  <div class="method-text">
+                    <h4>Motivação Constante</h4>
+                    <p>Aprendizado através das músicas que você ama</p>
+                  </div>
+                </div>
+
+                <div class="method-item">
+                  <div class="method-icon">
+                    <i class="fas fa-users"></i>
+                  </div>
+                  <div class="method-text">
+                    <h4>Abordagem Humana</h4>
+                    <p>Cada aluno é único, com ritmo e objetivos próprios</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="experience-timeline">
+                <h3>Minha Jornada Musical</h3>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-year">2004</div>
+                    <div class="timeline-content">
+                      <h4>Formação Acadêmica</h4>
+                      <p>
+                        Licenciatura em Música pela UFRGS, com especialização em
+                        ensino de cordas dedilhadas
+                      </p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-year">2006</div>
+                    <div class="timeline-content">
+                      <h4>Início da Carreira</h4>
+                      <p>
+                        Primeiras experiências em escolas de música e projetos
+                        sociais
+                      </p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-content">
+                      <h4>Especialização Online</h4>
+                      <p>
+                        Transição para o ensino online, desenvolvendo
+                        metodologia própria
+                      </p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                      <h4>Método Consolidado</h4>
+                      <p>
+                        Mais de 1000 alunos formados com abordagem personalizada
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cta-about">
+                <a href="projeto-formulario.html" class="btn btn-primary">
+                  <i class="fas fa-guitar"></i> Comece Sua Jornada Musical
+                </a>
+                <a href="audio.html" class="btn btn-secondary">
+                  <i class="fas fa-headphones"></i> Ouça Amostras
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="progress-section" id="progresso">
+      <div class="container">
+        <div class="progress-container">
+          <div class="progress-header">
+            <div class="progress-title">
+              <h3>Progresso do Projeto</h3>
+              <p>Acompanhe o desenvolvimento do seu projeto musical</p>
+            </div>
+
+            <div class="progress-circle">
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle class="circle-bg" cx="60" cy="60" r="50"></circle>
+                <circle class="circle-progress" cx="60" cy="60" r="50"></circle>
+              </svg>
+              <div class="progress-text">40%</div>
+            </div>
+          </div>
+
+          <div class="chapter-info">
+            <p>Capítulo 2 de 5</p>
+          </div>
+
+          <div class="services-progress">
+            <h4>Progresso por Serviço</h4>
+
+            <div class="service-item service-1">
+              <div class="service-name">
+                <span>Transcrição de Áudio</span>
+                <span>40%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="service-item service-2">
+              <div class="service-name">
+                <span>Aulas Online</span>
+                <span>70%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="service-item service-3">
+              <div class="service-name">
+                <span>Eventos Musicais</span>
+                <span>25%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="service-item service-4">
+              <div class="service-name">
+                <span>Criação de Partituras</span>
+                <span>90%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-actions">
+          <div class="settings">
+            <h4>Configurações do Projeto</h4>
+            <div class="theme-toggle">
+              <span>Modo Claro/Escuro</span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="themeToggle" />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="color-picker-mini" style="margin-top: 1.5rem">
+              <h5>Cor do Projeto</h5>
+              <div class="color-options">
+                <div
+                  class="color-option active"
+                  style="background-color: #0fcc45"
+                  data-color="#0fcc45"
+                ></div>
+                <div
+                  class="color-option"
+                  style="background-color: #3498db"
+                  data-color="#3498db"
+                ></div>
+                <div
+                  class="color-option"
+                  style="background-color: #9b59b6"
+                  data-color="#9b59b6"
+                ></div>
+                <div
+                  class="color-option"
+                  style="background-color: #f1c40f"
+                  data-color="#f1c40f"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-actions">
+            <h4>Ações Rápidas</h4>
+            <div class="action-buttons">
+              <div class="action-btn" id="favoriteServices">
+                <i class="fas fa-star"></i>
+                <span>Serviços Favoritos</span>
+              </div>
+              <div class="action-btn" id="exportOutline">
+                <i class="fas fa-file-export"></i>
+                <span>Exportar esboço do projeto</span>
+              </div>
+              <div class="action-btn" id="convertToVisual">
+                <i class="fas fa-wave-square"></i>
+                <span>Converter para diagrama visual</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+      <div class="container">
+        <article class="blog-post">
+          <div class="blog-header">
+            <h2>O futuro do seu caminho musical começa aqui</h2>
+            <div class="blog-meta">
+              <span class="author">Por Daniel Gehlen</span>
+              <span class="date">• 5 de Fevereiro de 2026</span>
+              <span class="read-time">• 12 min para ler</span>
+            </div>
+          </div>
+
+          <div class="blog-content">
+            <h3>Conheça Meus Serviços Musicais</h3>
+            <p>
+              Cada projeto musical é único. Ofereço soluções especializadas para
+              transformar suas ideias em realidade, seja aprendendo, tocando ou
+              organizando.
+            </p>
+
+            <div class="service-highlight">
+              <div class="highlight-icon">🎵</div>
+              <div>
+                <h4>Aulas Online Personalizadas</h4>
+                <p>Aprenda a tocar com prazer e no seu ritmo.</p>
+                <p>
+                  <strong>A Metodologia:</strong> Minha abordagem é focada no
+                  prazer de aprender. As aulas são 100% personalizadas ao seu
+                  gosto musical e ritmo de aprendizado, para que você toque as
+                  músicas que ama desde o início. Ofereço aulas individuais, em
+                  dupla ou cursos gravados, para violão, guitarra e ukulele.
+                </p>
+                <p>
+                  <strong>Para quem é:</strong> Iniciantes, hobbyistas ou quem
+                  quer retomar os estudos de forma descomplicada e gratificante.
+                </p>
+                <a
+                  href="https://aulas-online.vercel.app/"
+                  class="service-link"
+                  target="_blank"
+                  >Saiba mais sobre as Aulas Online →</a
+                >
+              </div>
+            </div>
+
+            <div class="service-highlight">
+              <div class="highlight-icon">🎼</div>
+              <div>
+                <h4>Transcrição & Criação de Partituras</h4>
+                <p>Transforme ideias e gravações em música no papel.</p>
+                <p>
+                  <strong>A Metodologia:</strong> Você me envia um áudio, uma
+                  ideia ou uma letra. Eu escuto, analiso cada nuance e
+                  transformo em uma partitura profissional, precisa e de fácil
+                  leitura. O processo é colaborativo: ajustamos juntos até ficar
+                  perfeito.
+                </p>
+                <p>
+                  <strong>Para quem é:</strong> Alunos que querem o repertório
+                  organizado, bandas que precisam de material de ensaio,
+                  compositores que buscam registrar suas criações ou
+                  organizadores de eventos.
+                </p>
+                <ul class="feature-list">
+                  <li>Transcrição de áudio para partitura completa.</li>
+                  <li>Criação de arranjos e composições originais.</li>
+                  <li>
+                    Diagramação de partituras para violão, guitarra, ukulele e
+                    voz.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="service-highlight">
+              <div class="highlight-icon">🎻</div>
+              <div>
+                <h4>Música de Excelência para Eventos</h4>
+                <p>Atmosfera sofisticada com violão erudito.</p>
+                <p>
+                  <strong>A Metodologia:</strong> Levo um repertório sofisticado
+                  de peças instrumentais antigas e clássicas, executadas com a
+                  técnica e expressão de mais de 30 anos de experiência. Minha
+                  postura é profissional, garantindo elegância e um som
+                  impecável para o ambiente do seu evento.
+                </p>
+                <p>
+                  <strong>Para quem é:</strong> Casamentos, jantares
+                  corporativos, coquetéis, inaugurações e qualquer ocasião que
+                  demande uma trilha sonora refinada e ao vivo.
+                </p>
+                <a
+                  href="https://daniel-gehlen.github.io/landing-page-eventos-daniel/"
+                  class="service-link"
+                  target="_blank"
+                  >Calcule o orçamento para seu Evento →</a
+                >
+              </div>
+            </div>
+
+            <div class="service-choice">
+              <h4>Qual serviço combina com seu momento musical?</h4>
+              <div class="choice-options">
+                <div class="choice-item">
+                  <i class="fas fa-guitar"></i>
+                  <p>
+                    <strong
+                      >Quer aprender a tocar suas músicas favoritas?</strong
+                    >
+                    As <strong>Aulas Online</strong> são o caminho.
+                  </p>
+                </div>
+                <div class="choice-item">
+                  <i class="fas fa-music"></i>
+                  <p>
+                    <strong
+                      >Precisa transformar uma gravação em partitura para a
+                      banda?</strong
+                    >
+                    O serviço de <strong>Transcrição</strong> resolve.
+                  </p>
+                </div>
+                <div class="choice-item">
+                  <i class="fas fa-glass-cheers"></i>
+                  <p>
+                    <strong
+                      >Deseja um som elegante e ao vivo para seu evento?</strong
+                    >
+                    Conheça mais sobre <strong>Eventos Musicais</strong>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Color Picker Section -->
+    <section class="color-picker-section">
+      <div class="container">
+        <div class="color-picker">
+          <h3>Ferramenta para colorir cada projeto</h3>
+          <p>
+            Selecione o projeto para colorir (os registros que a pessoa criou no
+            site)
+          </p>
+
+          <div class="project-selector">
+            <select id="projectSelect">
+              <option value="">Selecione um projeto...</option>
+              <option value="project1">Transcrição: Música/Letra</option>
+              <option value="project2">
+                Aulas: Curso Violão, Ukulele e Guitarra Iniciante
+              </option>
+              <option value="project3">Eventos</option>
+              <option value="project4">Composição: Nova Canção</option>
+            </select>
+          </div>
+
+          <div class="color-options-grid">
+            <div
+              class="color-option-large"
+              style="background-color: #0fcc45"
+              data-color="#0fcc45"
+            >
+              <span>Verde Profissional</span>
+            </div>
+            <div
+              class="color-option-large"
+              style="background-color: #3498db"
+              data-color="#3498db"
+            >
+              <span>Azul Tranquilo</span>
+            </div>
+            <div
+              class="color-option-large"
+              style="background-color: #9b59b6"
+              data-color="#9b59b6"
+            >
+              <span>Roxo Criativo</span>
+            </div>
+            <div
+              class="color-option-large"
+              style="background-color: #f1c40f"
+              data-color="#f1c40f"
+            >
+              <span>Amarelo Energético</span>
+            </div>
+            <div
+              class="color-option-large"
+              style="background-color: #e74c3c"
+              data-color="#e74c3c"
+            >
+              <span>Vermelho Paixão</span>
+            </div>
+            <div
+              class="color-option-large"
+              style="background-color: #1abc9c"
+              data-color="#1abc9c"
+            >
+              <span>Turquesa Calmo</span>
+            </div>
+          </div>
+
+          <div class="color-preview">
+            <div class="preview-box" id="colorPreview">
+              <p>Visualização da cor selecionada</p>
+            </div>
+            <button class="btn btn-primary" id="applyColorBtn">
+              Aplicar Cor ao Projeto
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights & Stats Section - CONTEÚDO ATUALIZADO -->
+    <section class="highlights-stats-section">
+      <div class="container">
+        <div class="highlights-stats-grid">
+          <div class="recent-highlights">
+            <h3>Atividades Recentes</h3>
+            <div class="highlight-item">
+              <div class="highlight-text">
+                <p>
+                  "Transcrição concluída: 'Blues em Mi' para guitarra elétrica.
+                  Disponível para download na sua biblioteca."
+                </p>
+              </div>
+              <div class="highlight-meta">
+                <span class="highlight-time">Há 2 minutos</span>
+              </div>
+            </div>
+
+            <div class="highlight-item">
+              <div class="highlight-text">
+                <p>
+                  "Seu pedido de arranjo para evento foi revisado. Confira as
+                  sugestões de repertório clássico."
+                </p>
+              </div>
+              <div class="highlight-meta">
+                <span class="highlight-time">Há 5 minutos</span>
+              </div>
+            </div>
+
+            <div class="highlight-item">
+              <div class="highlight-text">
+                <p>
+                  "Aula agendada: Violão Intermediário - Próxima sessão em 2
+                  dias. Material de estudo já disponível."
+                </p>
+              </div>
+              <div class="highlight-meta">
+                <span class="highlight-time">Há 8 minutos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="today-stats">
+            <h3>Métricas do Dia</h3>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-value" id="timeRead">5</div>
+                <div class="stat-label">Transcrições Solicitadas</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value" id="wordsRead">12</div>
+                <div class="stat-label">Partituras Visualizadas</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value" id="highlightsCount">3</div>
+                <div class="stat-label">Aulas Concluídas</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value" id="readingSpeed">92%</div>
+                <div class="stat-label">Avaliação dos Serviços</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>© 2026 Daniel Gehlen. Criado para experiências musicais premium.</p>
+        <div class="footer-links">
+          <a href="#privacidade">Política de Privacidade</a>
+          <a href="#termos">Termos de Serviço</a>
+          <a href="mailto:contato@danielgehlen.com">Contato</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+  </body>
+</html>
