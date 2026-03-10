@@ -5,35 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amostras de Áudio | Daniel Gehlen</title>
     <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="modules/styles/audio-styles.css" />
   </head>
   <body>
-    <!-- Header -->
-    <header>
-      <div class="logo">
-        <i class="fas fa-music"></i>
-        <span>Daniel Gehlen</span>
-      </div>
-
-      <nav>
-        <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="index.html#sobre">Sobre</a></li>
-          <!-- Atualizado -->
-          <li><a href="index.html#servicos">Serviços</a></li>
-          <li><a href="audio.html" class="active">Amostras de Áudio</a></li>
-          <li><a href="library.html">Biblioteca</a></li>
-        </ul>
-      </nav>
-
-      <div class="search-bar">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Buscar amostras..." />
-      </div>
-    </header>
+    <!-- Header será injetado pelo main.js -->
 
     <!-- Audio Samples Hero -->
     <section class="hero">
@@ -190,148 +165,10 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>
-          © 2026 Daniel Gehlen. Amostras de áudio para demonstração
-          profissional.
-        </p>
-        <div class="footer-links">
-          <a href="#privacidade">Política de Privacidade</a>
-          <a href="#termos">Termos de Uso</a>
-          <a href="mailto:harmonia251251@gmail.com">Contato</a>
-          <a
-            href="https://wa.me/+5551989345497?text=Olá!%20Vim%20do%20site%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20musicais.%20Segue%20minhas%20dúvidas:"
-            target="_blank"
-            rel="noopener noreferrer"
-            >WhatsApp</a
-          >
-        </div>
-      </div>
-    </footer>
+    <!-- Footer será injetado pelo main.js -->
 
-    <!-- Audio Player Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const playButtons = document.querySelectorAll(".play-btn");
-        let currentAudio = null;
-        let isPlaying = false;
-
-        // Simulação de player de áudio
-        playButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            const audioId = this.getAttribute("data-audio");
-            const audioCard = this.closest(".audio-card");
-            const playIcon = this.querySelector("i");
-            const timeDisplay = audioCard.querySelector(".time");
-            const progressBar = audioCard.querySelector(".audio-progress");
-
-            // Pausar áudio atual se estiver tocando
-            if (currentAudio && currentAudio !== this) {
-              const currentIcon = currentAudio.querySelector("i");
-              currentIcon.classList.remove("fa-pause");
-              currentIcon.classList.add("fa-play");
-
-              const currentCard = currentAudio.closest(".audio-card");
-              const currentTime = currentCard.querySelector(".time");
-              const currentProgress =
-                currentCard.querySelector(".audio-progress");
-
-              currentTime.textContent =
-                "0:00 / " + currentTime.textContent.split(" / ")[1];
-              currentProgress.style.width = "0%";
-            }
-
-            if (currentAudio === this && isPlaying) {
-              // Pausar
-              playIcon.classList.remove("fa-pause");
-              playIcon.classList.add("fa-play");
-              isPlaying = false;
-              currentAudio = null;
-            } else {
-              // Reproduzir
-              playIcon.classList.remove("fa-play");
-              playIcon.classList.add("fa-pause");
-              isPlaying = true;
-              currentAudio = this;
-
-              // Simular progresso do áudio
-              const duration = timeDisplay.textContent.split(" / ")[1];
-              const [min, sec] = duration.split(":").map(Number);
-              const totalSeconds = min * 60 + sec;
-
-              let currentSeconds = 0;
-              const interval = setInterval(() => {
-                if (!isPlaying || currentAudio !== this) {
-                  clearInterval(interval);
-                  return;
-                }
-
-                currentSeconds++;
-                const progressPercent = (currentSeconds / totalSeconds) * 100;
-                progressBar.style.width = progressPercent + "%";
-
-                const currentMin = Math.floor(currentSeconds / 60);
-                const currentSec = currentSeconds % 60;
-                timeDisplay.textContent = `${currentMin}:${currentSec.toString().padStart(2, "0")} / ${duration}`;
-
-                if (currentSeconds >= totalSeconds) {
-                  clearInterval(interval);
-                  playIcon.classList.remove("fa-pause");
-                  playIcon.classList.add("fa-play");
-                  isPlaying = false;
-                  currentAudio = null;
-                  timeDisplay.textContent = "0:00 / " + duration;
-                  progressBar.style.width = "0%";
-                }
-              }, 1000);
-            }
-          });
-        });
-
-        // Theme toggle (reutilizado da main.js)
-        const themeToggle = document.createElement("input");
-        themeToggle.type = "checkbox";
-        themeToggle.id = "themeToggle";
-        themeToggle.style.display = "none";
-
-        const savedTheme = localStorage.getItem("theme") || "dark";
-        if (savedTheme === "light") {
-          document.body.classList.add("light-mode");
-        }
-
-        // Adicionar toggle de tema ao footer
-        const themeContainer = document.createElement("div");
-        themeContainer.className = "theme-toggle-footer";
-        themeContainer.innerHTML = `
-                <label for="themeToggle">
-                    <span>Modo ${savedTheme === "light" ? "Escuro" : "Claro"}</span>
-                    <div class="toggle-switch-small">
-                        <input type="checkbox" id="themeToggleFooter" ${savedTheme === "light" ? "checked" : ""}>
-                        <span class="slider-small"></span>
-                    </div>
-                </label>
-            `;
-
-        document.querySelector("footer .container").appendChild(themeContainer);
-
-        const themeToggleFooter = document.getElementById("themeToggleFooter");
-        if (themeToggleFooter) {
-          themeToggleFooter.addEventListener("change", function () {
-            if (this.checked) {
-              document.body.classList.add("light-mode");
-              localStorage.setItem("theme", "light");
-              themeContainer.querySelector("span").textContent = "Modo Escuro";
-            } else {
-              document.body.classList.remove("light-mode");
-              localStorage.setItem("theme", "dark");
-              themeContainer.querySelector("span").textContent = "Modo Claro";
-            }
-          });
-        }
-      });
-    </script>
+    <!-- Script modular -->
+    <script type="module" src="main.js"></script>
 
     <style>
       .audio-section {
@@ -563,5 +400,6 @@
         }
       }
     </style>
+    <script type="module" src="main.js"></script>
   </body>
 </html>
