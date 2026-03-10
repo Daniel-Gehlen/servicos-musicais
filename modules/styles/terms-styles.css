@@ -1,0 +1,144 @@
+/* TERMOS.HTML STYLES - IDÊNTICO AO ORIGINAL */
+.terms-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.terms-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.terms-header h1 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.terms-header p {
+  color: #aaa;
+  font-size: 1.1rem;
+}
+
+.terms-content {
+  background-color: var(--card-bg);
+  border-radius: 15px;
+  padding: 3rem;
+  border: 1px solid var(--border);
+}
+
+.terms-section {
+  margin-bottom: 2.5rem;
+}
+
+.terms-section h2 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terms-section h2 i {
+  font-size: 1.2rem;
+}
+
+.terms-section p,
+.terms-section ul {
+  color: #ccc;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.terms-section ul {
+  padding-left: 1.5rem;
+}
+
+.terms-section li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.terms-section li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.warning-box {
+  background-color: rgba(231, 76, 60, 0.1);
+  border-left: 4px solid #e74c3c;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.warning-box p {
+  margin: 0;
+  color: #ccc;
+}
+
+.info-box {
+  background-color: rgba(52, 152, 219, 0.1);
+  border-left: 4px solid #3498db;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.info-box p {
+  margin: 0;
+  color: #ccc;
+}
+
+.acceptance-box {
+  background-color: rgba(15, 204, 69, 0.1);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.acceptance-box h3 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.terms-footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  color: #aaa;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .terms-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .terms-header h1 {
+    font-size: 2rem;
+  }
+}
