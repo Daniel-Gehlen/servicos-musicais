@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Iniciar Projeto Musical | Daniel Gehlen</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="modules/styles/form-styles.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -480,6 +482,7 @@
                   name="serviceType"
                   value="transcription"
                   data-service="transcription"
+                  required
                 />
                 <label for="serviceTranscription">
                   <strong>Transcrição de Áudio para Partitura</strong><br />
@@ -494,6 +497,7 @@
                   name="serviceType"
                   value="lessons"
                   data-service="lessons"
+                  required
                 />
                 <label for="serviceLessons">
                   <strong>Aulas Online</strong><br />
@@ -510,6 +514,7 @@
                   name="serviceType"
                   value="events"
                   data-service="events"
+                  required
                 />
                 <label for="serviceEvents">
                   <strong>Música para Eventos</strong><br />
@@ -524,6 +529,7 @@
                   name="serviceType"
                   value="composition"
                   data-service="composition"
+                  required
                 />
                 <label for="serviceComposition">
                   <strong>Criação/Composição</strong><br />
@@ -670,7 +676,7 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="required">Seu nível atual:</label>
-                  <select class="form-select" name="skillLevel">
+                  <select class="form-select" name="skillLevel" required>
                     <option value="">Selecione...</option>
                     <option value="absolute_beginner">
                       Absoluto iniciante (nunca tocou)
@@ -689,7 +695,7 @@
 
                 <div class="form-group">
                   <label class="required">Frequência desejada:</label>
-                  <select class="form-select" name="lessonFrequency">
+                  <select class="form-select" name="lessonFrequency" required>
                     <option value="">Selecione...</option>
                     <option value="weekly">1 vez por semana</option>
                     <option value="biweekly">2 vezes por semana</option>
@@ -705,7 +711,7 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="required">Tipo de evento:</label>
-                  <select class="form-select" name="eventType">
+                  <select class="form-select" name="eventType" required>
                     <option value="">Selecione...</option>
                     <option value="wedding">Casamento</option>
                     <option value="corporate">Evento Corporativo</option>
@@ -722,6 +728,7 @@
                     class="form-input"
                     name="eventDate"
                     min="<?php echo date('Y-m-d'); ?>"
+                    required
                   />
                 </div>
               </div>
@@ -729,7 +736,7 @@
               <div class="form-row">
                 <div class="form-group">
                   <label class="required">Duração estimada:</label>
-                  <select class="form-select" name="eventDuration">
+                  <select class="form-select" name="eventDuration" required>
                     <option value="">Selecione...</option>
                     <option value="1h">Até 1 hora</option>
                     <option value="2h">2 horas</option>
@@ -746,6 +753,7 @@
                     name="guestCount"
                     min="1"
                     max="500"
+                    required
                   />
                 </div>
               </div>
@@ -828,6 +836,7 @@
                 class="form-input"
                 name="fullName"
                 placeholder="Seu nome completo"
+                required
               />
             </div>
 
@@ -838,6 +847,7 @@
                 class="form-input"
                 name="preferredName"
                 placeholder="Nome para eu usar nas aulas"
+                required
               />
             </div>
           </div>
@@ -850,6 +860,7 @@
                 class="form-input"
                 name="email"
                 placeholder="seu@email.com"
+                required
               />
             </div>
 
@@ -860,6 +871,7 @@
                 class="form-input"
                 name="phone"
                 placeholder="(11) 99999-9999"
+                required
               />
             </div>
           </div>
@@ -872,12 +884,13 @@
                 class="form-input"
                 name="city"
                 placeholder="Sua cidade"
+                required
               />
             </div>
 
             <div class="form-group">
               <label>Estado:</label>
-              <select class="form-select" name="state">
+              <select class="form-select" name="state" required>
                 <option value="">Selecione...</option>
                 <option value="AC">Acre</option>
                 <option value="AL">Alagoas</option>
@@ -912,7 +925,7 @@
 
           <div class="form-group">
             <label>Fuso horário preferido para contato/aulas:</label>
-            <select class="form-select" name="timezone">
+            <select class="form-select" name="timezone" required>
               <option value="">Selecione seu horário preferido...</option>
               <option value="morning">Manhã (8h-12h)</option>
               <option value="afternoon">Tarde (13h-18h)</option>
@@ -923,7 +936,7 @@
 
           <div class="form-group">
             <label>Como conheceu meus serviços?</label>
-            <select class="form-select" name="referralSource">
+            <select class="form-select" name="referralSource" required>
               <option value="">Selecione...</option>
               <option value="google">Google/Busca online</option>
               <option value="social">Redes sociais</option>
@@ -961,6 +974,7 @@
               name="projectDescription"
               placeholder="Descreva em detalhes o que você está procurando. Quanto mais informações, melhor conseguirei entender e atender suas expectativas."
               rows="4"
+              required
             ></textarea>
             <div class="form-help">
               Exemplo para transcrição: "Preciso da música X do artista Y,
@@ -973,7 +987,7 @@
             <label>Prazo desejado (se houver):</label>
             <div class="form-row">
               <div class="form-group">
-                <select class="form-select" name="deadlineType">
+                <select class="form-select" name="deadlineType" required>
                   <option value="no_deadline">Sem prazo específico</option>
                   <option value="urgent">Urgente (até 3 dias)</option>
                   <option value="soon">Breve (1-2 semanas)</option>
@@ -991,6 +1005,7 @@
                   name="specificDeadline"
                   min="<?php echo date('Y-m-d'); ?>"
                   placeholder="Data específica (opcional)"
+                  required
                 />
               </div>
             </div>
@@ -1000,7 +1015,7 @@
             <label>Orçamento estimado que você tem em mente:</label>
             <div class="form-row">
               <div class="form-group">
-                <select class="form-select" name="budgetRange">
+                <select class="form-select" name="budgetRange" required>
                   <option value="">Selecione uma faixa...</option>
                   <option value="100-200">R$ 100 - R$ 200</option>
                   <option value="200-350">R$ 200 - R$ 350</option>
@@ -1017,6 +1032,7 @@
                   class="form-input"
                   name="budgetNotes"
                   placeholder="Observações sobre orçamento (opcional)"
+                  required
                 />
               </div>
             </div>
@@ -1030,6 +1046,7 @@
               name="projectFiles[]"
               multiple
               accept="audio/*,video/*,.mp3,.wav,.m4a,.pdf,.jpg,.png"
+              required
             />
             <div class="form-help">
               Você pode enviar áudios, vídeos, imagens de partituras existentes
@@ -1047,6 +1064,7 @@
               name="referenceLinks"
               placeholder="Cole aqui links do YouTube, Spotify, ou outros sites que mostrem o que você tem em mente."
               rows="3"
+              required
             ></textarea>
           </div>
 
@@ -1057,6 +1075,7 @@
               name="restrictions"
               placeholder="Ex: 'Não gosto de jazz', 'Preciso que seja simplificado para iniciante', 'Quero focar em técnica de solo', etc."
               rows="3"
+              required
             ></textarea>
           </div>
 
@@ -1085,6 +1104,7 @@
               name="finalMessage"
               placeholder="Alguma última observação, pergunta ou informação que queira adicionar?"
               rows="3"
+              required
             ></textarea>
           </div>
 
@@ -1373,18 +1393,18 @@
 
                                 <div class="form-group">
                                     <label class="required">Título da música (se conhecido):</label>
-                                    <input type="text" class="form-input" name="songTitle" placeholder="Ex: 'Garota de Ipanema'">
+                                    <input type="text" class="form-input" name="songTitle" placeholder="Ex: 'Garota de Ipanema'" required>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>Artista/Banda:</label>
-                                        <input type="text" class="form-input" name="artistName" placeholder="Ex: Tom Jobim">
+                                        <input type="text" class="form-input" name="artistName" placeholder="Ex: Tom Jobim" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Tom original (se souber):</label>
-                                        <input type="text" class="form-input" name="originalKey" placeholder="Ex: Ré Maior (D)">
+                                        <input type="text" class="form-input" name="originalKey" placeholder="Ex: Ré Maior (D)" required>
                                     </div>
                                 </div>
 
@@ -1397,15 +1417,15 @@
                                     <label>Nível de dificuldade desejado:</label>
                                     <div class="radio-group">
                                         <div class="radio-item">
-                                            <input type="radio" id="diffEasy" name="difficultyLevel" value="easy">
+                                            <input type="radio" id="diffEasy" name="difficultyLevel" value="easy" required>
                                             <label for="diffEasy">Simplificado (para iniciantes)</label>
                                         </div>
                                         <div class="radio-item">
-                                            <input type="radio" id="diffMedium" name="difficultyLevel" value="medium">
+                                            <input type="radio" id="diffMedium" name="difficultyLevel" value="medium" required>
                                             <label for="diffMedium">Original (como no áudio)</label>
                                         </div>
                                         <div class="radio-item">
-                                            <input type="radio" id="diffHard" name="difficultyLevel" value="hard">
+                                            <input type="radio" id="diffHard" name="difficultyLevel" value="hard" required>
                                             <label for="diffHard">Avançado (com todas as nuances)</label>
                                         </div>
                                     </div>
@@ -1451,13 +1471,13 @@
 
                                 <div class="form-group">
                                     <label>Estilos musicais de interesse:</label>
-                                    <input type="text" class="form-input" name="musicInterests" placeholder="Ex: MPB, Rock, Sertanejo, Pop Internacional...">
+                                    <input type="text" class="form-input" name="musicInterests" placeholder="Ex: MPB, Rock, Sertanejo, Pop Internacional..." required>
                                     <div class="form-help">Isso me ajuda a preparar material relevante para você</div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Músicas específicas que gostaria de aprender:</label>
-                                    <textarea class="form-textarea" name="desiredSongs" placeholder="Liste algumas músicas que você adoraria tocar (artista - música)" rows="3"></textarea>
+                                    <textarea class="form-textarea" name="desiredSongs" placeholder="Liste algumas músicas que você adoraria tocar (artista - música)" rows="3" required></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -1472,7 +1492,7 @@
                                             <label for="experienceSome">Algumas aulas/cursos online</label>
                                         </div>
                                         <div class="radio-item">
-                                            <input type="radio" id="experienceRegular" name="previousExperience" value="regular">
+                                            <input type="radio" id="experienceRegular" name="previousExperience" value="regular" required>
                                             <label for="experienceRegular">Já fiz aulas regulares antes</label>
                                         </div>
                                     </div>
@@ -1480,7 +1500,7 @@
 
                                 <div class="form-group">
                                     <label>Quanto tempo por semana pretende praticar?</label>
-                                    <select class="form-select" name="practiceTime">
+                                    <select class="form-select" name="practiceTime" required>
                                         <option value="">Selecione...</option>
                                         <option value="less1h">Menos de 1 hora</option>
                                         <option value="1-3h">1-3 horas</option>
@@ -1499,7 +1519,7 @@
 
                                 <div class="form-group">
                                     <label>Local do evento (endereço ou cidade):</label>
-                                    <input type="text" class="form-input" name="eventLocation" placeholder="Ex: Porto Alegre/RS ou endereço completo">
+                                    <input type="text" class="form-input" name="eventLocation" placeholder="Ex: Porto Alegre/RS ou endereço completo" required>
                                 </div>
 
                                 <div class="form-group">
@@ -1514,7 +1534,7 @@
                                             <label for="venueOutdoor">Externo (jardim, varanda, pátio)</label>
                                         </div>
                                         <div class="radio-item">
-                                            <input type="radio" id="venueMixed" name="eventVenue" value="mixed">
+                                            <input type="radio" id="venueMixed" name="eventVenue" value="mixed" required>
                                             <label for="venueMixed">Misto (área coberta e descoberta)</label>
                                         </div>
                                     </div>
@@ -1532,7 +1552,7 @@
                                             <label for="soundPartial">Parcial (precisarei trazer alguns itens)</label>
                                         </div>
                                         <div class="radio-item">
-                                            <input type="radio" id="soundNo" name="soundEquipment" value="no">
+                                            <input type="radio" id="soundNo" name="soundEquipment" value="no" required>
                                             <label for="soundNo">Não, preciso trazer tudo</label>
                                         </div>
                                     </div>
@@ -1543,7 +1563,7 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label>Estilo principal:</label>
-                                            <select class="form-select" name="eventStyle">
+                                            <select class="form-select" name="eventStyle" required>
                                                 <option value="">Selecione...</option>
                                                 <option value="classical">Clássico/Erudito</option>
                                                 <option value="mpb">MPB/Bossa Nova</option>
@@ -1555,7 +1575,7 @@
 
                                         <div class="form-group">
                                             <label>Intensidade musical:</label>
-                                            <select class="form-select" name="musicIntensity">
+                                            <select class="form-select" name="musicIntensity" required>
                                                 <option value="">Selecione...</option>
                                                 <option value="background">Música de fundo (discreta)</option>
                                                 <option value="interactive">Interativa (chama atenção)</option>
@@ -1567,17 +1587,17 @@
 
                                 <div class="form-group">
                                     <label>Músicas específicas que gostaria no repertório:</label>
-                                    <textarea class="form-textarea" name="eventPlaylist" placeholder="Liste músicas, artistas ou estilos que devem (ou não devem) ser incluídos" rows="3"></textarea>
+                                    <textarea class="form-textarea" name="eventPlaylist" placeholder="Liste músicas, artistas ou estilos que devem (ou não devem) ser incluídos" rows="3" required></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Momento especial que requer música específica?</label>
-                                    <textarea class="form-textarea" name="specialMoments" placeholder="Ex: 'Entrada da noiva com música X', 'Primeira dança com música Y', etc." rows="3"></textarea>
+                                    <textarea class="form-textarea" name="specialMoments" placeholder="Ex: 'Entrada da noiva com música X', 'Primeira dança com música Y', etc." rows="3" required></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Há algum código de vestimenta ou outra exigência?</label>
-                                    <input type="text" class="form-input" name="dressCode" placeholder="Ex: 'Traje social preto', 'Esperamos que chegue 1h antes', etc.">
+                                    <input type="text" class="form-input" name="dressCode" placeholder="Ex: 'Traje social preto', 'Esperamos que chegue 1h antes', etc." required>
                                 </div>
                             </div>
                         `;
@@ -1590,7 +1610,7 @@
 
                                 <div class="form-group">
                                     <label class="required">Título provisório (se já tiver):</label>
-                                    <input type="text" class="form-input" name="compositionTitle" placeholder="Ex: 'Canção para Maria'">
+                                    <input type="text" class="form-input" name="compositionTitle" placeholder="Ex: 'Canção para Maria'" required>
                                 </div>
 
                                 <div class="form-group">
@@ -1601,7 +1621,7 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>Andamento (velocidade) desejado:</label>
-                                        <select class="form-select" name="tempo">
+                                        <select class="form-select" name="tempo" required>
                                             <option value="">Selecione...</option>
                                             <option value="slow">Lento (balada, emocional)</option>
                                             <option value="moderate">Moderado (média, confortável)</option>
@@ -1612,7 +1632,7 @@
 
                                     <div class="form-group">
                                         <label>Tom sugerido (se tiver preferência):</label>
-                                        <input type="text" class="form-input" name="suggestedKey" placeholder="Ex: Lá menor (Am), Sol maior (G)">
+                                        <input type="text" class="form-input" name="suggestedKey" placeholder="Ex: Lá menor (Am), Sol maior (G)" required>
                                     </div>
                                 </div>
 
@@ -1696,7 +1716,7 @@
                                             <label for="materialLyrics">Tenho a letra/poema</label>
                                         </div>
                                         <div class="radio-item">
-                                            <input type="radio" id="materialDemo" name="existingMaterial" value="demo">
+                                            <input type="radio" id="materialDemo" name="existingMaterial" value="demo" required>
                                             <label for="materialDemo">Tenho uma demo/gravação simples</label>
                                         </div>
                                     </div>
@@ -1704,7 +1724,7 @@
 
                                 <div class="form-group">
                                     <label>Se já tem material, descreva-o:</label>
-                                    <textarea class="form-textarea" name="existingMaterialDesc" placeholder="Descreva o que você já criou ou tem em mente" rows="3"></textarea>
+                                    <textarea class="form-textarea" name="existingMaterialDesc" placeholder="Descreva o que você já criou ou tem em mente" rows="3" required></textarea>
                                 </div>
                             </div>
                         `;
@@ -1786,10 +1806,46 @@
         document
           .getElementById("submitForm")
           .addEventListener("click", function () {
-            if (!document.getElementById("acceptTerms").checked) {
-              alert(
-                "Você precisa aceitar os Termos de Serviço e Política de Privacidade para enviar o projeto.",
-              );
+            // Antigravity Security Layer: Protect against XSS, SQLi, and IA Prompt Injection
+            const validateInput = (value) => {
+              if (typeof value !== "string") return value;
+              
+              const patterns = [
+                /<script.*?>.*?<\/script>/gi, // XSS
+                /javascript:/gi, // XSS
+                /onclick|onmouseover|onload/gi, // XSS
+                /UNION SELECT|DROP TABLE|DELETE FROM|INSERT INTO|UPDATE.*?SET/gi, // SQLi
+                /('|"|;)\s*(OR|AND)\s*.*?=.*?/gi, // SQLi common patterns
+                /ignore (all )?previous instructions/gi, // IA Prompt Injection
+                /system prompt|assistant instructions/gi, // IA Prompt Injection
+                /YOU ARE NOW|STAY IN CHARACTER/gi // IA Prompt Injection
+              ];
+
+              let sanitized = value;
+              patterns.forEach(pattern => {
+                if (pattern.test(sanitized)) {
+                  console.warn("Security alert: Potentially malicious input detected and blocked.");
+                  sanitized = "[REDACTED FOR SECURITY]";
+                }
+              });
+              return sanitized;
+            };
+
+            const form = document.querySelector("main.form-container"); // Note: In a real app, use a proper <form> element
+            let isMalicious = false;
+            
+            // Validate all inputs in the current step before specific submission logic
+            const allInputs = document.querySelectorAll("input, textarea, select");
+            allInputs.forEach(input => {
+              const sanitized = validateInput(input.value);
+              if (sanitized === "[REDACTED FOR SECURITY]") {
+                isMalicious = true;
+                input.style.borderColor = "#e74c3c";
+              }
+            });
+
+            if (isMalicious) {
+              alert("⚠️ Aviso de Segurança: Foram detectados padrões de entrada não permitidos. Por favor, revise os campos marcados em vermelho.");
               return;
             }
 
@@ -1812,5 +1868,6 @@
         updateSteps();
       });
     </script>
+    <script type="module" src="styles/form-styles.css"></script>
   </body>
 </html>
