@@ -5,6 +5,12 @@ export class HeaderManager {
   }
 
   init() {
+    // Se já existe um header estático no HTML, apenas configura os links ativos
+    if (document.querySelector('header')) {
+      this.header = document.querySelector('header');
+      this.setupActiveLinks();
+      return;
+    }
     this.createHeader();
     this.setupActiveLinks();
   }

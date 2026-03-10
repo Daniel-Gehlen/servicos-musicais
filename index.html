@@ -16,12 +16,34 @@
     />
   </head>
   <body>
-    <!-- Header será inserido aqui pelo JavaScript -->
+    <!-- HEADER ESTÁTICO -->
+    <header>
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-music"></i>
+          <span>Daniel Gehlen</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html" class="active">Início</a></li>
+            <li><a href="index.html#sobre">Sobre</a></li>
+            <li><a href="index.html#servicos">Serviços</a></li>
+            <li><a href="audio.html">Amostras de Áudio</a></li>
+            <li><a href="library.html">Biblioteca</a></li>
+            <li><a href="projeto-formulario.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Iniciar Projeto</a></li>
+          </ul>
+        </nav>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Buscar...">
+        </div>
+      </div>
+    </header>
 
     <main>
       <!-- HERO SECTION -->
       <section class="hero">
-        <div class="container">
+        <div class="container hero-container">
           <div class="hero-content">
             <h1>
               Dê vida em <span class="typing-text">projetos musicais</span>
@@ -37,27 +59,28 @@
               <a href="#servicos" class="btn btn-secondary">Ver Serviços</a>
             </div>
           </div>
+          <div class="hero-image">
+            <img src="assets/images/eu-perfil.png" alt="Daniel Gehlen" class="profile-img">
+          </div>
         </div>
       </section>
 
       <!-- SOBRE -->
       <section id="sobre" class="about-section">
         <div class="container">
-          <div class="about-content">
-            <div class="about-text">
-              <h2>Sobre Daniel Gehlen</h2>
-              <p>Músico profissional com vasta experiência em violão erudito e transcrição musical.</p>
-              <div class="about-grid">
-                <div class="about-item">
-                  <i class="fas fa-graduation-cap"></i>
-                  <h4>Educação</h4>
-                  <p>Formado em Música com especialização em Performance.</p>
-                </div>
-                <div class="about-item">
-                  <i class="fas fa-award"></i>
-                  <h4>Experiência</h4>
-                  <p>Mais de 10 anos dedicados à música e ao ensino.</p>
-                </div>
+          <div class="about-text">
+            <h2>Sobre Daniel Gehlen</h2>
+            <p>Músico profissional com vasta experiência em violão erudito e transcrição musical.</p>
+            <div class="about-grid">
+              <div class="about-item">
+                <i class="fas fa-graduation-cap"></i>
+                <h4>Educação</h4>
+                <p>Formado em Música com especialização em Performance.</p>
+              </div>
+              <div class="about-item">
+                <i class="fas fa-award"></i>
+                <h4>Experiência</h4>
+                <p>Mais de 10 anos dedicados à música e ao ensino.</p>
               </div>
             </div>
           </div>
@@ -101,26 +124,6 @@
         </div>
       </section>
 
-
-      <!-- COLOR PICKER -->
-      <section class="color-picker-section">
-        <div class="container">
-          <div class="color-picker">
-            <h3>Personalize sua Experiência</h3>
-            <p>Escolha a cor de destaque que mais combina com você</p>
-            <div class="color-options-grid">
-              <div class="color-option-large" style="background-color: #0fcc45;" data-color="#0fcc45">Verde</div>
-              <div class="color-option-large" style="background-color: #3498db;" data-color="#3498db">Azul</div>
-              <div class="color-option-large" style="background-color: #e74c3c;" data-color="#e74c3c">Vermelho</div>
-              <div class="color-option-large" style="background-color: #f1c40f;" data-color="#f1c40f">Amarelo</div>
-            </div>
-            <div class="color-preview">
-              <div class="preview-box">Preview da Cor</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- HIGHLIGHTS & STATS -->
       <section class="highlights-stats-section">
         <div class="container">
@@ -158,9 +161,63 @@
       </section>
     </main>
 
-    <!-- Footer será inserido aqui pelo JavaScript -->
+    <!-- FOOTER ESTÁTICO -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2026 Daniel Gehlen. Serviços musicais profissionais.</p>
+        <div class="footer-links">
+          <a href="privacidade.html">Política de Privacidade</a>
+          <a href="termos.html">Termos de Serviço</a>
+          <a href="mailto:danielgehlentech@gmail.com">Contato</a>
+          <a href="https://wa.me/+5551989345497?text=Olá!%20Vim%20do%20site%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20musicais." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      </div>
+    </footer>
 
     <!-- SCRIPTS -->
+    <!-- Efeito de digitação: script inline para funcionar via file:// também -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const typingElement = document.querySelector(".typing-text");
+        if (!typingElement) return;
+
+        const texts = [
+          "projetos musicais",
+          "aulas online",
+          "partituras profissionais",
+          "eventos especiais",
+        ];
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isPaused = false;
+
+        const type = () => {
+          const currentText = texts[textIndex];
+          if (!isPaused) {
+            if (!isDeleting && charIndex < currentText.length) {
+              typingElement.textContent = currentText.substring(0, charIndex + 1);
+              charIndex++;
+              setTimeout(type, 100);
+            } else if (isDeleting && charIndex > 0) {
+              typingElement.textContent = currentText.substring(0, charIndex - 1);
+              charIndex--;
+              setTimeout(type, 50);
+            } else if (!isDeleting && charIndex === currentText.length) {
+              isPaused = true;
+              setTimeout(() => { isPaused = false; isDeleting = true; setTimeout(type, 1500); }, 2000);
+            } else if (isDeleting && charIndex === 0) {
+              isDeleting = false;
+              textIndex = (textIndex + 1) % texts.length;
+              setTimeout(type, 500);
+            }
+          }
+        };
+
+        setTimeout(type, 1000);
+      });
+    </script>
     <script type="module" src="main.js"></script>
   </body>
 </html>
