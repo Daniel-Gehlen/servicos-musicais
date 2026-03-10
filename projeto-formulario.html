@@ -410,27 +410,27 @@
     </style>
   </head>
   <body>
-    <!-- Header -->
+    <!-- HEADER ESTÁTICO -->
     <header>
-      <div class="logo">
-        <i class="fas fa-music"></i>
-        <span>Daniel Gehlen</span>
-      </div>
-
-      <nav>
-        <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="index.html#sobre">Sobre</a></li>
-          <!-- Atualizado -->
-          <li><a href="index.html#servicos">Serviços</a></li>
-          <li><a href="audio.html">Amostras de Áudio</a></li>
-          <li><a href="library.html">Biblioteca</a></li>
-        </ul>
-      </nav>
-
-      <div class="search-bar">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Pesquisar partituras..." />
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-music"></i>
+          <span>Daniel Gehlen</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="index.html#sobre">Sobre</a></li>
+            <li><a href="index.html#servicos">Serviços</a></li>
+            <li><a href="audio.html">Amostras de Áudio</a></li>
+            <li><a href="library.html">Biblioteca</a></li>
+            <li><a href="projeto-formulario.html" class="btn btn-primary active" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Iniciar Projeto</a></li>
+          </ul>
+        </nav>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Buscar...">
+        </div>
       </div>
     </header>
 
@@ -1868,6 +1868,18 @@
         updateSteps();
       });
     </script>
+    <!-- FOOTER ESTÁTICO -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2026 Daniel Gehlen. Serviços musicais profissionais.</p>
+        <div class="footer-links">
+          <a href="privacidade.html">Política de Privacidade</a>
+          <a href="termos.html">Termos de Serviço</a>
+          <a href="mailto:danielgehlentech@gmail.com">Contato</a>
+          <a href="https://wa.me/+5551989345497?text=Olá!%20Vim%20do%20site%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20musicais." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      </div>
+    </footer>
     <script type="module" src="styles/form-styles.css"></script>
   </body>
 </html>

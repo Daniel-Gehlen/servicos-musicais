@@ -20,11 +20,6 @@ class App {
     this.modules.footer.init();
     this.modules.consent.init();
     this.modules.snow.init();
-
-
-    if (document.querySelector(".typing-text")) {
-      this.initTypingEffect();
-    }
   }
 
 
